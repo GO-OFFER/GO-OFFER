@@ -3,6 +3,13 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+mvnw
+mvnw.cmd
+proyecto.asta
+tablas.sql
+.circleci
+bin
+.mvn/wrapper
 
 ### STS ###
 .apt_generated
