@@ -1,5 +1,5 @@
 package edu.escuelaing.eci.arsw.gooffer.model;
 
-public class Oferta {
-
+public enum Rol {
+    ADMIN,USUARIO;
 }
