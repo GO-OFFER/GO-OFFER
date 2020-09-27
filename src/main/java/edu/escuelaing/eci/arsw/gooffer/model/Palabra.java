@@ -5,12 +5,11 @@ public class Palabra {
     private int idServicio;
     private String categoria;
 
-    public Palabra(int id idPalabra, int idServicio, String categoria) {
+    public Palabra(int idPalabra,int idServicio, String categoria) {
         this.idPalabra = idPalabra;
         this.idServicio = idServicio;
         this.categoria = categoria;
     }
-
     public int getIdPalabra() {
         return idPalabra;
     }
@@ -19,14 +18,12 @@ public class Palabra {
         this.idPalabra = idPalabra;
     }
 
-    public void setIdServicio(int idServicio) {
-        this.idServicio = idServicio;
+    public int getIdServicio() {
+        return idServicio;
     }
 
-    public int getIdServicio() { return idServicio; }
-
-    public void setServicio(int servicio) {
-        this.servicio = servicio;
+    public void setIdServicio(int idServicio) {
+        this.idServicio = idServicio;
     }
 
     public String getCategoria() {

@@ -7,17 +7,15 @@ public class Compra {
     private int id;
     private int idServicio;
     private int idComprador;
-    private int idVendedor;
     private int calificacion;
     private Date fecha;
     private boolean estado;
     private ArrayList<Comentario> comentarios;
 
-    public Compra(int id, int idServicio, int idComprador, int idVendedor,int calificacion, Date fecha, boolean estado, ArrayList<Comentario> comentarios) {
+    public Compra(int id, int idServicio, int idComprador, int calificacion, Date fecha, boolean estado, ArrayList<Comentario> comentarios) {
         this.id = id;
         this.idServicio = idServicio;
         this.idComprador = idComprador;
-        this.idVendedor = idVendedor;
         this.calificacion = calificacion;
         this.fecha = fecha;
         this.estado = estado;
@@ -46,14 +44,6 @@ public class Compra {
 
     public void setIdComprador(int idComprador) {
         this.idComprador = idComprador;
-    }
-
-    public int getIdVendedor() {
-        return idVendedor;
-    }
-
-    public void setIdVendedor(int idVendedor) {
-        this.idVendedor = idVendedor;
     }
 
     public int getCalificacion() {
