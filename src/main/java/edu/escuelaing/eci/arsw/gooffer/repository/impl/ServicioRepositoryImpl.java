@@ -3,10 +3,14 @@ package edu.escuelaing.eci.arsw.gooffer.repository.impl;
 
 import edu.escuelaing.eci.arsw.gooffer.model.Servicio;
 import edu.escuelaing.eci.arsw.gooffer.repository.ServicioRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class ServicioRepositoryImpl implements ServicioRepository {
+
+
 
     @Override
     public void addServicio(Servicio servicio) {
