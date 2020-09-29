@@ -12,7 +12,7 @@ Go Offer es una sencilla plataforma de venta de servicos en tiempo real que perm
 
 ### Diagramas
    - *Entidad Relación:*
-	![image](https://github.com/aosfandres/Proyecto-ARSW-2020/blob/master/resources/entidadRelacion.png)
+	![image](https://github.com/GO-OFFER/GO-OFFER/blob/master/images/entidadRelacion.png)
 	
    - *Diagrama Clases:*
 	![image](https://github.com/aosfandres/Proyecto-ARSW-2020/blob/master/resources/clases2.png)
