@@ -1,27 +1,42 @@
 package edu.escuelaing.eci.arsw.gooffer.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class Usuario {
-    private int id;
+@Entity
+@Table(name="usuario")
+public class Usuario implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    private Integer id;
     private String nombre;
     private String email;
-    private String rol;
+    private int tipo;
     private String password;
+    private int numcompras;
+    public Usuario(){
 
-    public Usuario(int id, String nombre, String email, String rol, String password) {
+    }
+    /*public Usuario(Integer id, String nombre, String email, int tipo, String password,int numCompras) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
-        this.rol = rol;
+        this.tipo = tipo;
         this.password = password;
+        this.numcompras = numCompras;
     }
-
-    public int getId() {
+    */
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -41,12 +56,12 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getRol() {
-        return rol;
+    public int getTipo() {
+        return tipo;
     }
 
-    public void setRol(String rol) {
-        this.rol = rol;
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
     }
 
     public String getPassword() {
@@ -55,5 +70,13 @@ public class Usuario {
 
     public void setPassword(String pasword) {
         this.password = pasword;
+    }
+
+    public int getNumCompras() {
+        return numcompras;
+    }
+
+    public void setNumCompras(int numCompras) {
+        this.numcompras = numCompras;
     }
 }

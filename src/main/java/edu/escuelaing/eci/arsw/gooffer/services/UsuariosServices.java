@@ -12,10 +12,10 @@ public class UsuariosServices {
     @Autowired
     private UsuarioRepository usuario;
 
-    public Usuario findbyId(int id){
+    /*public Usuario findbyId(int id){
         return usuario.findById(id);
-    }
+    }*/
     public List<Usuario> findAllUsuario(){
-        return usuario.findAllUsuario();
+        return usuario.findAll();
     }
 }
