@@ -2,6 +2,7 @@ package edu.escuelaing.eci.arsw.gooffer.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -13,10 +14,19 @@ public class Servicio {
 	
 	@Id
     private int id;
+	
+	@Column(name = "idusuario")
     private int idusuario; //vendedor
+	
+	@Column(name = "descripcion")
     private String descripcion;
-    private Date creationdate;
+	
+	@Column(name = "nombre")
     private String nombre;
+	
+	@Column(name = "creationdate")
+    private Date creationdate;
+	
 
     public Servicio(int id, int idVendedor, String nombre, String descripcion, Palabra categoria, Date creacion) {
         this.id = id;
@@ -24,6 +34,9 @@ public class Servicio {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.creationdate = creacion;
+    }
+    public Servicio() {
+    	
     }
 
     public int getId() {

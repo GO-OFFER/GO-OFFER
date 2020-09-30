@@ -1,6 +1,7 @@
 package edu.escuelaing.eci.arsw.gooffer.model;
 
 public class Palabra {
+	/* falta Palabra por conexion */
     private int idPalabra;
     private int idServicio;
     private String categoria;

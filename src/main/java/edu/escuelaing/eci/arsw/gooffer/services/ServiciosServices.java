@@ -2,6 +2,8 @@ package edu.escuelaing.eci.arsw.gooffer.services;
 
 import edu.escuelaing.eci.arsw.gooffer.model.Servicio;
 import edu.escuelaing.eci.arsw.gooffer.repository.ServicioRepository;
+import edu.escuelaing.eci.arsw.gooffer.repository.impl.ServicioRepositoryImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +13,11 @@ import java.util.List;
 public class ServiciosServices {
 
     @Autowired
-    private ServicioRepository servicio;
+    private ServicioRepositoryImpl servicio;
 
-    public Servicio getServicioById(String id){
+    /* public Servicio getServicioById(String id){
         return servicio.getServicioById(id);
-    }
+    }*/
     public void addServicio(Servicio servicio){
 
     }
@@ -25,8 +27,8 @@ public class ServiciosServices {
     public void deleteServicio(int id){
 
     }
-    public List<Servicio> findAllServicio(){
-        return servicio.findAllServicio();
+    public List<Servicio> findAllServices(){
+        return servicio.findAllServices();
     }
 
 }

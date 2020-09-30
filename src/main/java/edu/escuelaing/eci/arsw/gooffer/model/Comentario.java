@@ -2,7 +2,13 @@ package edu.escuelaing.eci.arsw.gooffer.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="servicio")
 public class Comentario {
+	/* falta comentario por conexion */
     private int id;
     private int idCompra;
     private String comentario;

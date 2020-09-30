@@ -7,10 +7,11 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CompraRepository extends JpaRepository<Usuario,Integer>{
-    void addCompra(Compra compra);
+public interface CompraRepository extends JpaRepository<Compra,Integer>{
+   /* void addCompra(Compra compra);
     void editCompra(Compra compra);
     void deleteCompra(int id);
     List<Compra> findAllCompra();
     Compra getCompraById(String id);
+    */
 }
