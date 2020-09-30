@@ -7,10 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -36,7 +33,17 @@ public class UsuarioController {
         }
         return new ResponseEntity<>(usuarios, HttpStatus.ACCEPTED);
     }
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<?> addUser(@RequestBody Usuario usuario){
+        try {
+            usuariosS.saveUsuario(usuario);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);
+        }
 
+    }
 /*
     @RequestMapping(method = RequestMethod.GET)
     public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {

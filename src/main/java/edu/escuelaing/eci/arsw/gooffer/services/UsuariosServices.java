@@ -10,12 +10,16 @@ import java.util.List;
 @Service
 public class UsuariosServices {
     @Autowired
-    private UsuarioRepository usuario;
+    private UsuarioRepository usuarioRepository;
 
     /*public Usuario findbyId(int id){
         return usuario.findById(id);
     }*/
     public List<Usuario> findAllUsuario(){
-        return usuario.findAll();
+        return usuarioRepository.findAll();
+    }
+
+    public void saveUsuario(Usuario usuario){
+        usuarioRepository.save(usuario);
     }
 }
