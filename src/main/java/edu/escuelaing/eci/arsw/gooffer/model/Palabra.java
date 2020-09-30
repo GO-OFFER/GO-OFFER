@@ -1,37 +1,50 @@
 package edu.escuelaing.eci.arsw.gooffer.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="palabra")
 public class Palabra {
 	/* falta Palabra por conexion */
-    private int idPalabra;
-    private int idServicio;
-    private String categoria;
+	@Id
+    private int id;
+	@Column(name = "idservicio")
+    private int idservicio;
+	@Column(name = "palabra")
+    private String palabra;
 
-    public Palabra(int idPalabra,int idServicio, String categoria) {
-        this.idPalabra = idPalabra;
-        this.idServicio = idServicio;
-        this.categoria = categoria;
+    public Palabra(int id,int idservicio, String palabra) {
+        this.id = id;
+        this.idservicio = idservicio;
+        this.palabra = palabra;
     }
-    public int getIdPalabra() {
-        return idPalabra;
+    public Palabra() {
+    	
     }
-
-    public void setIdPalabra(int idPalabra) {
-        this.idPalabra = idPalabra;
-    }
-
-    public int getIdServicio() {
-        return idServicio;
+    public int getId() {
+        return id;
     }
 
-    public void setIdServicio(int idServicio) {
-        this.idServicio = idServicio;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public int getIdservicio() {
+        return idservicio;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setIdservicio(int idservicio) {
+        this.idservicio = idservicio;
+    }
+
+    public String getPalabraa() {
+        return palabra;
+    }
+
+    public void setPalabra(String palabra) {
+        this.palabra = palabra;
     }
 }

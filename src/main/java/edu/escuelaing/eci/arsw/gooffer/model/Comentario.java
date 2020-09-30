@@ -2,39 +2,53 @@ package edu.escuelaing.eci.arsw.gooffer.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="servicio")
+@Table(name="comentarios")
 public class Comentario {
 	/* falta comentario por conexion */
-    private int id;
-    private int idCompra;
-    private String comentario;
+	
+	
+	@Id
+    private int idservicio;
+	
+	@Column(name = "idusuario")
+    private int idusuario;
+	
+	@Column(name = "creationdate")
     private Date fecha;
+	
+	@Column(name = "comentario")
+    private String comentario;
 
-    public Comentario(int id, int idCompra, String comentario, Date fecha) {
-        this.id = id;
-        this.idCompra = idCompra;
+    public Comentario(int idservicio, int idusuario, Date fecha, String comentario) {
+        this.idservicio= idservicio;
+        this.idusuario = idusuario;
         this.comentario = comentario;
         this.fecha = fecha;
     }
-
-    public int getId() {
-        return id;
+    public Comentario() {
+    	
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdservicio() {
+        return idservicio;
     }
 
-    public int getIdCompra() {
-        return idCompra;
+    public void setIdservicio(int idservicio) {
+        this.idservicio = idservicio;
     }
 
-    public void setIdCompra(int idCompra) {
-        this.idCompra = idCompra;
+    public int getIdusuario() {
+        return idusuario;
+    }
+
+    public void setIdusuario(int idusuario) {
+        this.idusuario = idusuario;
     }
 
     public String getComentario() {

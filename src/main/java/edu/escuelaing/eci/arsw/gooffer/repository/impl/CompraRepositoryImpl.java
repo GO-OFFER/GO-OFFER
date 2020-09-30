@@ -19,7 +19,7 @@ import java.util.Optional;
 public class CompraRepositoryImpl{
 	@Autowired
     CompraRepository compraRepository;
-	public List<Compra> findAllCompras() {
+	public List<Compra> findAllComentarios() {
         return  compraRepository.findAll();
     }
     

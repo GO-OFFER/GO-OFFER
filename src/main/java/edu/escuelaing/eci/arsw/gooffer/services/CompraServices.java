@@ -16,6 +16,6 @@ public class CompraServices {
     private CompraRepositoryImpl compraRepository;
 	
 	public List<Compra> findAllCompras(){
-        return compraRepository.findAllCompras();
+        return compraRepository.findAllComentarios();
     }
 }
