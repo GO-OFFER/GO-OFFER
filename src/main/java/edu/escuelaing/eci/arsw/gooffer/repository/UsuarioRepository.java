@@ -5,12 +5,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
+
 public interface UsuarioRepository extends JpaRepository<Usuario,Integer>{
-   /* Usuario findById(int id);
-    void deleteById(int id);
+	/*Usuario findById(int id);
+   /* void deleteById(int id);
     void addUsuario(Usuario usuario);
     void editUsuario(Usuario usuario);
-    List<Usuario> findAllUsuario();*/
-
+    List<Usuario> findAllUsuario();
+*/
 
 }

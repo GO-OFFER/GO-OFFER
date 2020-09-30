@@ -2,21 +2,28 @@ package edu.escuelaing.eci.arsw.gooffer.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="servicio")
 public class Servicio {
+	
+	@Id
     private int id;
-    private int idVendedor;
-    private String nombre;
+    private int idusuario; //vendedor
     private String descripcion;
-    private Palabra categoria;
-    private Date creacion;
+    private Date creationdate;
+    private String nombre;
 
     public Servicio(int id, int idVendedor, String nombre, String descripcion, Palabra categoria, Date creacion) {
         this.id = id;
-        this.idVendedor = idVendedor;
+        this.idusuario = idVendedor;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.categoria = categoria;
-        this.creacion = creacion;
+        this.creationdate = creacion;
     }
 
     public int getId() {
@@ -28,11 +35,11 @@ public class Servicio {
     }
 
     public int getIdVendedor() {
-        return idVendedor;
+        return idusuario;
     }
 
     public void setIdVendedor(int idVendedor) {
-        this.idVendedor = idVendedor;
+        this.idusuario = idVendedor;
     }
 
     public String getNombre() {
@@ -51,19 +58,12 @@ public class Servicio {
         this.descripcion = descripcion;
     }
 
-    public Palabra getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Palabra categoria) {
-        this.categoria = categoria;
-    }
 
     public Date getCreacion() {
-        return creacion;
+        return creationdate;
     }
 
     public void setCreacion(Date creacion) {
-        this.creacion = creacion;
+        this.creationdate = creacion;
     }
 }

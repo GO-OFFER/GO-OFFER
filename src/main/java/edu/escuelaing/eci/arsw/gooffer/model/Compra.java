@@ -1,25 +1,35 @@
 package edu.escuelaing.eci.arsw.gooffer.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import java.io.Serializable;
+import java.util.Date;
+
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Compra {
-    private int id;
-    private int idServicio;
-    private int idComprador;
-    private int calificacion;
-    private Date fecha;
-    private boolean estado;
-    private ArrayList<Comentario> comentarios;
 
-    public Compra(int id, int idServicio, int idComprador, int calificacion, Date fecha, boolean estado, ArrayList<Comentario> comentarios) {
+@Entity
+@Table(name="compra")
+public class Compra {
+	
+	@Id
+    private int id;
+    private int idservicio;
+    private int idusuario;
+    private int calificacion;
+    private Date creationdate;
+    
+    
+
+    public Compra(int id, int idServicio, int idComprador, int calificacion, Date fecha ) {
         this.id = id;
-        this.idServicio = idServicio;
-        this.idComprador = idComprador;
+        this.idservicio = idServicio;
+        this.idusuario = idComprador;
         this.calificacion = calificacion;
-        this.fecha = fecha;
-        this.estado = estado;
-        this.comentarios = comentarios;
+        this.creationdate = fecha;
     }
 
     public int getId() {
@@ -31,19 +41,19 @@ public class Compra {
     }
 
     public int getIdServicio() {
-        return idServicio;
+        return idservicio;
     }
 
     public void setIdServicio(int idServicio) {
-        this.idServicio = idServicio;
+        this.idservicio = idServicio;
     }
 
     public int getIdComprador() {
-        return idComprador;
+        return idusuario;
     }
 
     public void setIdComprador(int idComprador) {
-        this.idComprador = idComprador;
+        this.idusuario = idComprador;
     }
 
     public int getCalificacion() {
@@ -55,27 +65,12 @@ public class Compra {
     }
 
     public Date getFecha() {
-        return fecha;
+        return creationdate;
     }
 
     public void setFecha(Date fecha) {
-        this.fecha = fecha;
+        this.creationdate = fecha;
     }
 
-    public boolean isEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
-
-    public ArrayList<Comentario> getComentarios() {
-        return comentarios;
-    }
-
-    public void setComentarios(ArrayList<Comentario> comentarios) {
-        this.comentarios = comentarios;
-    }
 
 }

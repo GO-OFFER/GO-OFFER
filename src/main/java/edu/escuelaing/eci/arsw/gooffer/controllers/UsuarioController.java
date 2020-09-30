@@ -15,24 +15,26 @@ import java.util.logging.Logger;
 
 import java.util.Set;
 
-@Controller
+@RestController
 @RequestMapping(value = "/usuarios")
 public class UsuarioController {
 
     @Autowired
-    UsuariosServices usuariosS = null;
+    UsuariosServices usuariosS;
 
     @RequestMapping(method = RequestMethod.GET)
     public  ResponseEntity<?>  findAllUsuarios() {
         List<Usuario> usuarios = null;
         try {
-            usuarios = usuariosS.findAllUsuario();
+            usuarios = usuariosS.findAllUsers();
         } catch (Exception ex) {
-            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        	Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error 404",HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(usuarios, HttpStatus.ACCEPTED);
     }
+   
+    /*
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> addUser(@RequestBody Usuario usuario){
         try {

@@ -1,10 +1,13 @@
 package edu.escuelaing.eci.arsw.gooffer.repository;
 
 import edu.escuelaing.eci.arsw.gooffer.model.Compra;
+import edu.escuelaing.eci.arsw.gooffer.model.Usuario;
 
 import java.util.List;
 
-public interface CompraRepository{
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CompraRepository extends JpaRepository<Usuario,Integer>{
     void addCompra(Compra compra);
     void editCompra(Compra compra);
     void deleteCompra(int id);
