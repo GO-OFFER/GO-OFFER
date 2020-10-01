@@ -6,12 +6,6 @@ import edu.escuelaing.eci.arsw.gooffer.model.Usuario;
 import edu.escuelaing.eci.arsw.gooffer.repository.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -46,6 +40,9 @@ public class UsuarioRepositoryImpl {
     public void saveUsuario(Usuario usuario) {
 		p.save(usuario);
 	}
+    public Optional<Usuario> findById(Integer id) {
+        return p.findById(id);
+    }
     /*
     @Override
     public void deleteById(int id) {

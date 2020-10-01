@@ -2,6 +2,7 @@ package edu.escuelaing.eci.arsw.gooffer.services;
 
 import java.util.List;
 
+import edu.escuelaing.eci.arsw.gooffer.model.Compra;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +17,7 @@ public class ComentarioServices {
 	public List<Comentario> findAllComentarios(){
         return comentarioRepositoryImpl.findAllComentarios();
     }
-
+	public void saveComentario(Comentario c){
+		comentarioRepositoryImpl.saveComentario(c);
+	}
 }

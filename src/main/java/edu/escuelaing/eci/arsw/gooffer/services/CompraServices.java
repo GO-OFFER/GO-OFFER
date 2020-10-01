@@ -1,5 +1,6 @@
 package edu.escuelaing.eci.arsw.gooffer.services;
 import edu.escuelaing.eci.arsw.gooffer.model.Compra;
+import edu.escuelaing.eci.arsw.gooffer.model.Servicio;
 import edu.escuelaing.eci.arsw.gooffer.model.Usuario;
 import edu.escuelaing.eci.arsw.gooffer.repository.ServicioRepository;
 import edu.escuelaing.eci.arsw.gooffer.repository.impl.CompraRepositoryImpl;
@@ -17,5 +18,8 @@ public class CompraServices {
 	
 	public List<Compra> findAllCompras(){
         return compraRepository.findAllCompras();
+    }
+    public void saveCompra(Compra c){
+        compraRepository.saveCompra(c);
     }
 }

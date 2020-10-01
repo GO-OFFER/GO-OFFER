@@ -31,4 +31,8 @@ public class ServiciosServices {
         return servicio.findAllServices();
     }
 
+    public void saveServicio(Servicio servi){
+        servicio.saveServicio(servi);
+    }
+
 }

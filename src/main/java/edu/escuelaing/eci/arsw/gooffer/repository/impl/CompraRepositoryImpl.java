@@ -22,5 +22,9 @@ public class CompraRepositoryImpl{
 	public List<Compra> findAllCompras() {
         return  compraRepository.findAll();
     }
-    
+    public void saveCompra(Compra compra) {
+        compraRepository.save(compra);
+    }
+
+
 }

@@ -1,6 +1,7 @@
 package edu.escuelaing.eci.arsw.gooffer.repository.impl;
 
 import edu.escuelaing.eci.arsw.gooffer.model.Comentario;
+import edu.escuelaing.eci.arsw.gooffer.model.Compra;
 import edu.escuelaing.eci.arsw.gooffer.repository.ComentarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,5 +18,7 @@ public class ComentarioRepositoryImpl{
 	public List<Comentario> findAllComentarios() {
         return  comentarioRepository.findAll();
     }
-	
+    public void saveComentario(Comentario comentario) {
+        comentarioRepository.save(comentario);
+    }
 }

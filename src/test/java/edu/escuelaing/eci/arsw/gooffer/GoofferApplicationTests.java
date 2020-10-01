@@ -1,8 +1,13 @@
 package edu.escuelaing.eci.arsw.gooffer;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 //import edu.escuelaing.eci.arsw.gooffer.services;
+import edu.escuelaing.eci.arsw.gooffer.model.Comentario;
+import edu.escuelaing.eci.arsw.gooffer.model.Compra;
+import edu.escuelaing.eci.arsw.gooffer.model.Servicio;
+import edu.escuelaing.eci.arsw.gooffer.model.Usuario;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +15,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import edu.escuelaing.eci.arsw.gooffer.services.*;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -26,7 +36,7 @@ class GoofferApplicationTests {
 	 private PalabraServices us3;
 	 @Autowired
 	 private ServiciosServices us4;
-	 
+
 	@Test
 	void consultaTablaUsuarios() {
 		assertTrue(us.findAllUsers()!=null);
@@ -50,4 +60,69 @@ class GoofferApplicationTests {
 	void consultaTablaServicios() {
 		assertTrue(us4.findAllServices()!=null);
 	}
+
+	@Test
+	public void deberiaInsertarUsuario() {
+		Usuario Usuario = new Usuario();
+		Random num = new Random();
+		int generator = num.nextInt(1000);
+		Usuario.setId(1003);
+		Usuario.setEmail("estudianteprueba"+ generator +"@mail.escuela.co");
+		Usuario.setNumCompras(6);
+		Usuario.setNombre("test03");
+		Usuario.setTipo(1);
+		Usuario.setPassword("12345");
+		us.saveUsuario(Usuario);
+		Usuario nuevo = null;
+		List<Usuario> usuarioList = us.findAllUsers();
+		for(Usuario u :usuarioList){
+			if(u.getEmail().equalsIgnoreCase(Usuario.getEmail())) {
+				nuevo = u;
+			}
+		}
+		assertEquals(nuevo.getEmail(), (Usuario.getEmail()));
+
+	}
+	@Test
+	public void DeberiaConsultarPorId() {
+		Usuario Usuario = new Usuario();
+		Random num = new Random();
+		int generator = num.nextInt(1000);
+		Usuario.setId(1003);
+		Usuario.setEmail("estudianteprueba"+ generator +"@mail.escuela.co");
+		Usuario.setNumCompras(6);
+		Usuario.setNombre("test03");
+		Usuario.setTipo(1);
+		Usuario.setPassword("12345");
+		us.saveUsuario(Usuario);
+		Optional<edu.escuelaing.eci.arsw.gooffer.model.Usuario> nuevo = us.findById(1003);
+		/*List<Usuario> usuarioList = us.findAllUsers();
+		for(Usuario u :usuarioList){
+			if(u.getEmail().equalsIgnoreCase(Usuario.getEmail())) {
+				nuevo = u;
+			}
+		}*/
+		assertEquals("test03", (Usuario.getNombre()));
+
+	}
+	@Test
+	public void DeberiaInsertarServicio() {
+		Servicio Servicio = new Servicio();
+		Servicio.setId(1003);
+		Servicio.setIdVendedor(111);
+		Servicio.setNombre("service03");
+		Servicio.setDescripcion("12345");
+		us4.saveServicio(Servicio);
+		Servicio nuevo = null;
+		List<Servicio> servicioList = us4.findAllServices();
+		for(Servicio s :servicioList){
+			System.out.println(s.getNombre());
+			if(s.getNombre().equalsIgnoreCase(Servicio.getNombre())) {
+				nuevo = s;
+			}
+		}
+		assertEquals(nuevo.getNombre(), (Servicio.getNombre()));
+
+	}
+
 }

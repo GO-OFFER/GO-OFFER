@@ -2,6 +2,7 @@ package edu.escuelaing.eci.arsw.gooffer.repository.impl;
 
 
 import edu.escuelaing.eci.arsw.gooffer.model.Servicio;
+import edu.escuelaing.eci.arsw.gooffer.model.Usuario;
 import edu.escuelaing.eci.arsw.gooffer.repository.ServicioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -23,6 +24,9 @@ public class ServicioRepositoryImpl{
 	 public List<Servicio> findAllServices() {
 	       return servicioRepository.findAll();
 	  }
+	  public void saveServicio(Servicio servicio) {
+		  servicioRepository.save(servicio);
+	}
 
    
 }
