@@ -5,7 +5,7 @@ api = (function() {
 
 		const promise = new Promise((resolve, reject) => {
 			$.ajax({
-				url: "https://go-offer.herokuapp.com/usuarios" + name,
+				url: "https://go-offer.herokuapp.com/usuarios/" + name,
 				type: 'POST',
 				data: fun,
 				contentType: "application/json"
