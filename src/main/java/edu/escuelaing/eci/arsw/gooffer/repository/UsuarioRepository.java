@@ -7,11 +7,5 @@ import java.util.List;
 
 
 public interface UsuarioRepository extends JpaRepository<Usuario,Integer>{
-	/*Usuario findById(int id);
-   /* void deleteById(int id);
-    void addUsuario(Usuario usuario);
-    void editUsuario(Usuario usuario);
-    List<Usuario> findAllUsuario();
-*/
 
 }

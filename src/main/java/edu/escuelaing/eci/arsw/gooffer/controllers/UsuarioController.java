@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 import java.util.Set;
 
 @RestController
-@RequestMapping(value = "https://go-offer.herokuapp.com/usuarios")
+@RequestMapping(value = "/usuarios")
 public class UsuarioController {
 
     @Autowired
