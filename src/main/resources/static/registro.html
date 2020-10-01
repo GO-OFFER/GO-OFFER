@@ -75,28 +75,43 @@
                   <div class="col-md-12 col-lg-4">
                      <div class="full">
                         <div class="heading_main text_align_left" style="margin-bottom: 0;">
-                           <h2><strong class="small">Ingresa a una nueva aventura</strong><br>AHORA!</h2>
+                           <h2><strong class="small">Registra tu datos para dar inicio a una</strong><br>nueva aventura</h2>
                         </div>
                      </div>
                   </div>
-                  <div class="col-md-12 col-lg-8">
-                     <div class="full">
-                         <div class="form_section">
-                            <form class="news_submit_form">
-                              <fieldset>
-                                 <div class="field">
-                                    <input type="text" placeholder="Nombre de usuario" name="usurio" required />
-                                    <input type="password" placeholder="Contraseña" name="pass" required />
-                                    <p><p>
-                                    <button>Ingresar</button>
-                                 </div>
-                              </fieldset>
-                            </form>
-                         </div>
-                     </div>
-                  </div>
-                  
-               </div>
+						<div class="col-md-12 col-lg-8">
+							<div class="full">
+								<div class="form_section">
+									<form class="news_submit_form">
+										<fieldset>
+											<div class="field">
+												<input type="text" id="usuario" placeholder="Nombre de usuario"
+													name="usuario" required />
+											 	<input type="text"
+													placeholder="email" id="usuarioemail" name="usuarioemail" required />
+												<input type="password" id="Contraseña" placeholder="Contraseña" name="pass"
+													required />
+
+												<p>
+													Elige el tipo de usuario que quieres ser! <select id="tipo" name="tipo">
+														<option value="0">seleccionar</option>
+														<option value="1">vendedor</option>
+														<option value="2">comprador</option>
+														
+													</select>
+												</p>
+												<p>
+												
+												<p>
+												<button type ="button" class="btn btn-primary" onclick="app.salvar()">Registrarse</button>
+											</div>
+										</fieldset>
+									</form>
+								</div>
+							</div>
+						</div>
+
+					</div>
             </div>
          </div>
           <p><p>
@@ -180,7 +195,17 @@
       <script src="js/images-loded.min.js"></script>
       <script src="js/custom.js"></script>
       <script src="js/app.js"></script>
-      <!-- End Google Map -->
+      <script src="js/usuario.js"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"
+			integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg=="
+			crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+		<script src="sweetalert2.all.min.js"></script>
+		<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+		<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+
+		<!-- End Google Map -->
       <script>
          $(document).ready(function() {
            $('#sidebarCollapse').on('click', function() {

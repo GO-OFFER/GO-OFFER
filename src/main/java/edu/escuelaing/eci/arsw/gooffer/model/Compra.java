@@ -2,6 +2,8 @@ package edu.escuelaing.eci.arsw.gooffer.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -17,6 +19,7 @@ import java.util.Date;
 public class Compra {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 	@Column(name = "idServicio")
     private int idservicio;

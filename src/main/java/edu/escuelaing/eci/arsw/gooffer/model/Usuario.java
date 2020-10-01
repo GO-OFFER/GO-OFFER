@@ -2,6 +2,8 @@ package edu.escuelaing.eci.arsw.gooffer.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,15 +17,21 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    
     @Column(name = "nombre")
     private String nombre;
+    
     @Column(name = "email")
     private String email;
+    
     @Column(name = "tipo")
     private int tipo;
+    
     @Column(name = "password")
     private String password;
+    
     @Column(name = "numcompras")
     private int numcompras;
     

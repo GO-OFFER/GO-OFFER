@@ -34,10 +34,11 @@ public class UsuarioController {
         return new ResponseEntity<>(usuarios, HttpStatus.ACCEPTED);
     }
    
-    /*
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> addUser(@RequestBody Usuario usuario){
+    
+    @RequestMapping(value="/{name}",method = RequestMethod.POST)
+    public ResponseEntity<?> addUser(@RequestBody Usuario usuario,@PathVariable String name){
         try {
+        	System.out.println(name+" LLEGUE BIEN GRACIAS POR PREGUNTAR  "+usuario);
             usuariosS.saveUsuario(usuario);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception ex) {

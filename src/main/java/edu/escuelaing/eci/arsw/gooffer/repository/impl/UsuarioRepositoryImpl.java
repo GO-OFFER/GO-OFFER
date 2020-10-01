@@ -43,6 +43,9 @@ public class UsuarioRepositoryImpl {
     public List<Usuario> findAllUsers() {
         return p.findAll();
     }
+    public void saveUsuario(Usuario usuario) {
+		p.save(usuario);
+	}
     /*
     @Override
     public void deleteById(int id) {
@@ -72,6 +75,9 @@ public class UsuarioRepositoryImpl {
         return usuarios;
     }
     */
+
+
+	
 
 
 }

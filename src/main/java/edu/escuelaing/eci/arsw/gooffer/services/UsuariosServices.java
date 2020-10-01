@@ -18,6 +18,11 @@ public class UsuariosServices {
     public List<Usuario> findAllUsers(){
         return usuarioRepository.findAllUsers();
     }
+
+	public void saveUsuario(Usuario usuario) {
+		usuarioRepository.saveUsuario(usuario);
+		
+	}
      
    /* public List<Usuario> findAllUsuario(){
         return usuarioRepository.findAll();
