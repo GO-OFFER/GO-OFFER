@@ -1,6 +1,22 @@
 app = (function() {
 
+	function salvarServicio() {
 
+		
+		var nameServicio = $("#nombreServicio").val();
+		var descripcion = $("#descripcion").val();
+		var tipo = $("#palabra").val();
+		var f = new Date();
+		var date= f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+		console.info(date);
+		var map = {
+			"idVendedor":1,
+			"nombre": nameServicio,
+			"descripcion": descripcion,
+			"creationdate": date
+		}
+		$.getScript("js/usuario.js", function() { api.crearServicio(map, "prueba12"); });
+	}
 	function salvar() {
 
 		var nameUsuario = $("#usuario").val();
@@ -36,7 +52,8 @@ app = (function() {
 			}*/
 	}
 	return {
-		salvar: salvar
+		salvar: salvar,
+		salvarServicio:salvarServicio
 
 	}
 

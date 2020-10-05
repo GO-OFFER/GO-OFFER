@@ -12,6 +12,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +27,10 @@ public class ServicioRepositoryImpl{
 	       return servicioRepository.findAll();
 	  }
 	  public void saveServicio(Servicio servicio) {
+		  LocalDate creationDate = LocalDate.now();
+		  
+		  servicio.setCreacion(Date.valueOf(creationDate));
+		  
 		  servicioRepository.save(servicio);
 	}
 

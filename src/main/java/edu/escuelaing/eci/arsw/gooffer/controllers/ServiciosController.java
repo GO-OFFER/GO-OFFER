@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +24,7 @@ import edu.escuelaing.eci.arsw.gooffer.services.ServiciosServices;
 @RestController
 @RequestMapping(value = "/servicios")
 public class ServiciosController {
+	
 
 	@Autowired
 	ServiciosServices serviciosService;
@@ -36,5 +39,17 @@ public class ServiciosController {
         }
         return new ResponseEntity<>(servicios, HttpStatus.ACCEPTED);
     }
+	
+	@RequestMapping(value="/{name}",method = RequestMethod.POST)
+    public ResponseEntity<?> addUser(@RequestBody Servicio servicio, @PathVariable String name){
+        try {
+        	System.out.println(name+" LLEGUE BIEN GRACIAS POR PREGUNTAR  "+ servicio);
+        	serviciosService.saveServicio(servicio);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);
+        }
 
+    }
 }
