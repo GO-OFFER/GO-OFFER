@@ -35,17 +35,7 @@ public class UsuarioController {
         return new ResponseEntity<>(usuarios, HttpStatus.ACCEPTED);
     }
    
-    @RequestMapping(path = "/{nombre}", method = RequestMethod.GET)
-    public ResponseEntity<?> getUsuario(@PathVariable String nombre) {
-        try {
-            //obtener datos que se enviaran a traves del API
-            Optional<Usuario> user = usuariosS.findByName(nombre);
-            return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
-
-        } catch (Exception ex) {
-            return new ResponseEntity<>("400 bad request", HttpStatus.NOT_FOUND);
-        }
-    }
+ 
     
     @RequestMapping(value="/{name}",method = RequestMethod.POST)
     public ResponseEntity<?> addUser(@RequestBody Usuario usuario,@PathVariable String name){
@@ -58,6 +48,17 @@ public class UsuarioController {
             return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);
         }
 
+    }
+    @RequestMapping(path = "/{nombre}", method = RequestMethod.GET)
+    public ResponseEntity<?> getUsuario(@PathVariable String nombre) {
+        try {
+            //obtener datos que se enviaran a traves del API
+            Optional<Usuario> user = usuariosS.findByName(nombre);
+            return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
+
+        } catch (Exception ex) {
+            return new ResponseEntity<>("400 bad request", HttpStatus.NOT_FOUND);
+        }
     }
 /*
     @RequestMapping(method = RequestMethod.GET)

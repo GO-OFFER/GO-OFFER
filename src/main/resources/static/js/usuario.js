@@ -69,11 +69,28 @@ api = (function() {
 		});
 
 	}
-	
+
+	function checkPassword(username,callback) {
+	    console.log(username);
+	    const promise = new Promise((resolve, reject) => {
+                $.ajax({
+                    url: "usuarios/" + username ,
+                    success: function(result) {
+                      callback(result);
+                    },
+                     error: function(XMLHttpRequest, textStatus, errorThrown) {
+                         alert("Usuario no encontrado");
+
+                    } ,
+                    async: true
+                });
+        });
+    }
 	return {
 		crear: crear,
 		crearServicio:crearServicio,
-		checkPassword:checkPassword
+		checkPassword:checkPassword,
+
 	}
 
 })();

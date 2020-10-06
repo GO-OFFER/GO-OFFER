@@ -1,8 +1,5 @@
 package edu.escuelaing.eci.arsw.gooffer;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
-
 //import edu.escuelaing.eci.arsw.gooffer.services;
 import edu.escuelaing.eci.arsw.gooffer.model.Comentario;
 import edu.escuelaing.eci.arsw.gooffer.model.Compra;
@@ -20,6 +17,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+
+		import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -123,6 +122,48 @@ class GoofferApplicationTests {
 		}
 		assertEquals(nuevo.getNombre(), (Servicio.getNombre()));
 
+	}
+	@Test
+	public void login1() {
+		Usuario Usuario = new Usuario();
+		Random num = new Random();
+		int generator = num.nextInt(1000);
+		Usuario.setId(1003);
+		Usuario.setEmail("estudianteprueba"+ generator +"@mail.escuela.co");
+		Usuario.setNumCompras(6);
+		Usuario.setNombre("test04");
+		Usuario.setTipo(1);
+		Usuario.setPassword("12345");
+		us.saveUsuario(Usuario);
+		Usuario nuevo = null;
+		List<Usuario> usuarioList = us.findAllUsers();
+		for(Usuario u :usuarioList){
+			if(u.getNombre().equalsIgnoreCase("test04")) {
+				nuevo = u;
+			}
+		}
+		assertEquals(nuevo.getPassword(),"12345");
+	}
+	@Test
+	public void noDeberialogin2() {
+		Usuario Usuario = new Usuario();
+		Random num = new Random();
+		int generator = num.nextInt(1000);
+		Usuario.setId(1003);
+		Usuario.setEmail("estudianteprueba"+ generator +"@mail.escuela.co");
+		Usuario.setNumCompras(6);
+		Usuario.setNombre("test04");
+		Usuario.setTipo(1);
+		Usuario.setPassword("12345");
+		us.saveUsuario(Usuario);
+		Usuario nuevo = null;
+		List<Usuario> usuarioList = us.findAllUsers();
+		for(Usuario u :usuarioList){
+			if(u.getNombre().equalsIgnoreCase("test04")) {
+				nuevo = u;
+			}
+		}
+		assertFalse(nuevo.getPassword()=="12344");
 	}
 
 }

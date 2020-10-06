@@ -1,7 +1,6 @@
 app = (function() {
-	
-	
-	function inicio() {
+
+    function inicio() {
 		var nombreusuario = $("#usuario").val();
 		$.getScript("js/usuario.js", function() { api.checkPassword(nombreusuario,validarCuenta); });
 	}
@@ -17,6 +16,7 @@ app = (function() {
         if (username.password == password){
             if(username.tipo === 1){
                 location.href = "/perfilVendedor.html"
+
             }
             else{
                location.href = "/registroServicio.html"
