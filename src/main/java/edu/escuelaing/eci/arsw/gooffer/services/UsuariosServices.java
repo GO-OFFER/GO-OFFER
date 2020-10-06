@@ -26,6 +26,13 @@ public class UsuariosServices {
 	public Optional<Usuario> findById(Integer id){
         return usuarioRepository.findById(id);
     }
+
+    public Optional<Usuario> findByName(String username) {
+        return usuarioRepository.findUsuarioByNombre(username);
+    }
+    //public Usuario findByNameAndPassword(String username,String password) {
+        //return usuarioRepository.findByUserNombreAndPassword(username,password);
+    //}
      
    /* public List<Usuario> findAllUsuario(){
         return usuarioRepository.findAll();

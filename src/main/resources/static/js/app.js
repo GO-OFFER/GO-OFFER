@@ -1,5 +1,29 @@
 app = (function() {
-
+    function inicio() {
+		var nombreusuario = $("#usuario").val();
+		$.getScript("js/usuario.js", function() { api.checkPassword(nombreusuario,validarCuenta); });
+	}
+    var validarCuenta = function(username){
+        var password = $('#pass').val();
+        //var hash = CryptoJS.SHA256(password);
+        console.log(password);
+        console.log(username.nombre);
+        console.log(username.tipo);
+        console.log(username.password);
+        sessionStorage.setItem("currentUser",username.nombre);
+        sessionStorage.setItem("currentRol",username.rol);
+        if (username.password == password){
+            if(username.tipo === 1){
+                location.href = "/registroServicio.html"
+            }
+            else{
+               location.href = "/registroServicio.html"
+            }
+        }
+        else {
+            alert("ContraseÃ±a incorrecta");
+        }
+    }
 	function salvarServicio() {
 
 		
@@ -53,7 +77,9 @@ app = (function() {
 	}
 	return {
 		salvar: salvar,
-		salvarServicio:salvarServicio
+		salvarServicio:salvarServicio,
+		validarCuenta:validarCuenta,
+		inicio:inicio,
 
 	}
 
