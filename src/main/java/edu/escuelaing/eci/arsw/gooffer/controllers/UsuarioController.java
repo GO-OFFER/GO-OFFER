@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,6 +35,17 @@ public class UsuarioController {
         return new ResponseEntity<>(usuarios, HttpStatus.ACCEPTED);
     }
    
+    @RequestMapping(path = "/{nombre}", method = RequestMethod.GET)
+    public ResponseEntity<?> getUsuario(@PathVariable String nombre) {
+        try {
+            //obtener datos que se enviaran a traves del API
+            Optional<Usuario> user = usuariosS.findByName(nombre);
+            return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
+
+        } catch (Exception ex) {
+            return new ResponseEntity<>("400 bad request", HttpStatus.NOT_FOUND);
+        }
+    }
     
     @RequestMapping(value="/{name}",method = RequestMethod.POST)
     public ResponseEntity<?> addUser(@RequestBody Usuario usuario,@PathVariable String name){

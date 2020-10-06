@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +33,15 @@ public class ServicioRepositoryImpl{
 		  servicio.setCreacion(Date.valueOf(creationDate));
 		  
 		  servicioRepository.save(servicio);
+	}
+	public List<Servicio> findServiciosById(int id) {
+		List<Servicio> lista= new ArrayList<Servicio>();
+		for (Servicio s: servicioRepository.findAll()) {
+			if(s.getIdVendedor()==id) {
+				lista.add(s);
+			}
+		}
+		return lista;
 	}
 
    

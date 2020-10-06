@@ -34,5 +34,8 @@ public class ServiciosServices {
     public void saveServicio(Servicio servi){
         servicio.saveServicio(servi);
     }
+	public List<Servicio> findServiciosById(int id) {
+		return servicio.findServiciosById(id);
+	}
 
 }

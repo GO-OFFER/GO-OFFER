@@ -52,4 +52,16 @@ public class ServiciosController {
         }
 
     }
+	@RequestMapping(value="/{id}",method = RequestMethod.GET)
+	public  ResponseEntity<?>  findServiciosById(@PathVariable int id) {
+        List<Servicio> servicios = null;
+        try {
+            servicios = serviciosService.findServiciosById(id);
+        } catch (Exception ex) {
+        	Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error 404",HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(servicios, HttpStatus.ACCEPTED);
+    }
+	
 }

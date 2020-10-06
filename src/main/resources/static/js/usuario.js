@@ -1,10 +1,31 @@
 api = (function() {
+	
+	 function getServiciosByVendedor(id, callback) {//
+        $.getJSON("http://localhost:8080/servicios/" + id, function (data) {
+            callback(data);
+        });
+    }
+	function checkPassword(username,callback) {
+	    console.log(username);
+	    const promise = new Promise((resolve, reject) => {
+                $.ajax({
+                    url: "usuarios/" + username ,
+                    success: function(result) {
+                      callback(result);
+                    },
+                     error: function(XMLHttpRequest, textStatus, errorThrown) {
+                         alert("Usuario no encontrado");
 
+                    } ,
+                    async: true
+                });
+        });
+    }
 	function crear(usuario, name) {
 		var fun = JSON.stringify(usuario);
 		const promise = new Promise((resolve, reject) => {
 			$.ajax({
-				url: "https://go-offer.herokuapp.com/usuarios/" + name,
+				url: "https://go-offer.herokuapp.com/usuarios/" + name, ///https://go-offer.herokuapp.com-----http://localhost:8080
 				type: 'POST',
 				data: fun,
 				contentType: "application/json"
@@ -48,9 +69,11 @@ api = (function() {
 		});
 
 	}
+	
 	return {
 		crear: crear,
-		crearServicio:crearServicio
+		crearServicio:crearServicio,
+		checkPassword:checkPassword
 	}
 
 })();
