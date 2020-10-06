@@ -16,6 +16,7 @@ Go Offer es una sencilla plataforma de venta de servicos en tiempo real que perm
 	
    - *Diagrama Clases:*
 	![image](https://github.com/GO-OFFER/GO-OFFER/blob/master/images/clases2.png)
+	![image](https://github.com/GO-OFFER/GO-OFFER/blob/master/images/clases3.png)
 	
    - *Componentes:*
 	![image](https://github.com/GO-OFFER/GO-OFFER/blob/master/images/Componentes.png)
@@ -29,54 +30,9 @@ Go Offer es una sencilla plataforma de venta de servicos en tiempo real que perm
       - *Vendedor*
 		![image](https://github.com/aosfandres/Proyecto-ARSW-2020/blob/master/resources/caso2.png)
 
-## Historias de usuario
- 1. COMO usuario /comprador
- QUIERO registrarme
- PARA PODER contratar personas calificadas en un servicio en especifico que este buscando.
+## Historias de usuario (Realizadas en taiga)
 
- 2. COMO usuario /comprador
-QUIERO consultar los servicios en la pagina web 
-PARA PODER realizar un filtro propio de las personas que considere sean más adecuadas.
-
- 3. COMO  usuario /comprador
-QUIERO calificar el servicio
-PARA PODER brindar a los otros usuarios información al respecto del servicio ofrecido y de igual forma tener en un futuro más información.
-
- 4. COMO usuario /comprador
-QUIERO contactar al vendedor a través de un chat ofrecido en la plataforma
-PARA PODER programar y negociar todo lo relacionado con el servicio para así poder adquirirlo.
-
- 5. COMO usuario /comprador
-QUIERO comentar la publicación del servicio adquirido 
-PARA PODER brindar a los otros usuarios información al respecto del servicio adquirido calificando este de una forma más amplia.
-
- 6. COMO usuario /comprador 
-QUIERO agregar a favoritos los servicios de mi preferencia
-PARA PODER Tener facilidad de acceso a ellos, cuando necesite volver a utilizar un servicio o recomendarlo.
-
- 7. COMO usuario /comprador 
-QUIERO ver los diferentes servicios que he adquirido
-PARA PODER tener el listado de los servicios que he contratado.
-
- 8. Como Usuario/Vendedor 
-quiero registrarme
- para poder ofrecer públicamente mis servicios mediante una plataforma web.
-
- 9. COMO Usuario/Vendedor 
-QUIERO publicar servicio en la plataforma
-PARA PODER dar a conocer mis servicios al resto de usuarios 
-
- 10. COMO Usuario/Vendedor
-QUIERO  Actualizar las descripción de los servicios que ofrezco en la plataforma
-PARA PODER mantener al día a los demás usuarios y a los posibles clientes de cualquier novedad en el servicio, horario, precio etc.
-
- 11. COMO Usuario/Vendedor
-QUIERO eliminar algun servicio publicado
-PARA PODER tener un stack de servicios validos que estoy prestando.
-
- 12. COMO Usuario/Vendedor
-QUIERO consultar los clientes que estén pidiendo u ofertando por adquirir mis servicios
-PARA PODER responder a la solicitud y contactarme con los posibles compradores.
+[![Taiga](https://www.mancomun.gal/wp-content/uploads/2018/09/taiga_solTic.png)](https://tree.taiga.io/project/juanromero11-go-offer/taskboard/sprint-2-9830)
 
  
  ## Mockups
@@ -100,7 +56,7 @@ PARA PODER responder a la solicitud y contactarme con los posibles compradores.
 
 [Github](https://github.com/) para el versionamiento.
 
-[Heroku](https://go-offer.herokuapp.com/index.html) para el depliege.
+[![Deployed to Heroku](https://www.herokucdn.com/deploy/button.png)](https://go-offer.herokuapp.com/index.html)  para el depliege.
 
 ## Authors
 
