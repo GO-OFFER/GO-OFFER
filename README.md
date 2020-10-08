@@ -19,7 +19,10 @@ Go Offer es una sencilla plataforma de venta de servicos en tiempo real que perm
 	![image](https://github.com/GO-OFFER/GO-OFFER/blob/master/images/clases3.png)
 	
    - *Componentes:*
-	![image](https://github.com/GO-OFFER/GO-OFFER/blob/master/images/Componentes.png)
+	![image](https://github.com/GO-OFFER/GO-OFFER/blob/master/images/Componentes.png)	
+
+   -*Despliege:*
+        ![image](https://github.com/GO-OFFER/GO-OFFER/blob/master/images/despli.PNG)
 			
    - *Casos de uso:*
    
