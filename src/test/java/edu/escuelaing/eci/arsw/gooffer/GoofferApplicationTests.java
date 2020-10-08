@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import edu.escuelaing.eci.arsw.gooffer.services.*;
@@ -22,7 +24,13 @@ import java.util.Random;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-
+//@ActiveProfiles("test")
+/*@TestPropertySource(properties = {
+		"spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.H2Dialect",
+		"spring.datasource.url=jdbc:h2:tcp://localhost/~/test",
+		"spring.datasource.username=sa",
+		"spring.datasource.password="
+})*/
 class GoofferApplicationTests {
 
 	 @Autowired
