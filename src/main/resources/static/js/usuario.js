@@ -1,12 +1,12 @@
 api = (function() {
 	
 	 function getServiciosByVendedor(id, callback) {//
-        $.getJSON("http://localhost:8080/servicios/" + id, function (data) {
+        $.getJSON("https://go-offer.herokuapp.com/servicios/" + id, function (data) {
             callback(data);
         });
     }
 	function getUsuairoByNombre(name, callback) {//
-        $.getJSON("http://localhost:8080/servicios/"+name, function (data) {
+        $.getJSON("https://go-offer.herokuapp.com/servicios/"+name, function (data) {
             callback(data);
         });
     }
@@ -30,7 +30,7 @@ api = (function() {
 		var fun = JSON.stringify(usuario);
 		const promise = new Promise((resolve, reject) => {
 			$.ajax({
-				url: "http://localhost:8080/usuarios/" + name, ///https://go-offer.herokuapp.com-----http://localhost:8080
+				url: "https://go-offer.herokuapp.com/usuarios/" + name, ///https://go-offer.herokuapp.com-----http://localhost:8080
 				type: 'POST',
 				data: fun,
 				contentType: "application/json"
