@@ -47,7 +47,6 @@ public class UsuarioController {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);
         }
-
     }
     @RequestMapping(path = "/{nombre}", method = RequestMethod.GET)
     public ResponseEntity<?> getUsuario(@PathVariable String nombre) {

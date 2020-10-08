@@ -1,8 +1,13 @@
 app = (function() {
-
+	
+	var nombreUsuario;
+	var id;
+	
     function inicio() {
-		var nombreusuario = $("#usuario").val();
-		$.getScript("js/usuario.js", function() { api.checkPassword(nombreusuario,validarCuenta); });
+		nombreUsuario = $("#usuario").val();
+		console.info(nombreUsuario);
+		
+		$.getScript("js/usuario.js", function() { api.checkPassword(nombreUsuario,validarCuenta); });
 	}
     var validarCuenta = function(username){
         var password = $('#pass').val();
@@ -15,11 +20,14 @@ app = (function() {
         sessionStorage.setItem("currentRol",username.rol);
         if (username.password == password){
             if(username.tipo === 1){
-                location.href = "/perfilVendedor.html"
+                nombreUsuario= username.nombre;
+				id= username.id;
+				console.info(nombreUsuario+" nom yyy id "+ id);
+				location.href = "/perfilVendedor.html";
 
             }
             else{
-               location.href = "/registroServicio.html"
+               location.href = "/registroServicio.html";
             }
         }
         else {
@@ -41,7 +49,7 @@ app = (function() {
 			"nombre": nameServicio,
 			"descripcion": descripcion,
 			"creationdate": date
-		}
+		};
 		$.getScript("js/usuario.js", function() { api.crearServicio(map, "prueba12"); });
 	}
 	
@@ -61,7 +69,7 @@ app = (function() {
 			"tipo": tipo,
 			"password": Contraseña,
 			"numcompras": 0
-		}
+		};
 		$.getScript("js/usuario.js", function() { api.crear(map, nameUsuario); });
 		
 	function getServiciosByVendedor() {
@@ -75,7 +83,8 @@ app = (function() {
         var mapeoDatos = datos.map(function (val) {
             return {nombre: val.nombre, 
 				descripcion: val.descripcion};
-        })
+        });
+		console.info(nombreUsuario+" nom yyy id "+ id);
         rellenarTabla(mapeoDatos);
     }
 
@@ -101,7 +110,7 @@ app = (function() {
            
 			
             tblBody.append(fila);
-        })
+        });
 		if(rellenodata){app.busquedaSillas(); rellenodata=false;}
         tabla.append(tblBody);
         tabla.append("</tbody>");
