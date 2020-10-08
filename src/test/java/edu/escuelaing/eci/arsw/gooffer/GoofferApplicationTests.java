@@ -138,7 +138,7 @@ class GoofferApplicationTests {
 		Usuario nuevo = null;
 		List<Usuario> usuarioList = us.findAllUsers();
 		for(Usuario u :usuarioList){
-			if(u.getNombre().equalsIgnoreCase("test04")) {
+			if(u.getEmail().equalsIgnoreCase("estudianteprueba"+ generator +"@mail.escuela.co")) {
 				nuevo = u;
 			}
 		}
@@ -159,7 +159,7 @@ class GoofferApplicationTests {
 		Usuario nuevo = null;
 		List<Usuario> usuarioList = us.findAllUsers();
 		for(Usuario u :usuarioList){
-			if(u.getNombre().equalsIgnoreCase("test04")) {
+			if(u.getEmail().equalsIgnoreCase("estudianteprueba"+ generator +"@mail.escuela.co")) {
 				nuevo = u;
 			}
 		}
