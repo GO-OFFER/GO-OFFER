@@ -52,7 +52,8 @@ public class UsuarioController {
     public ResponseEntity<?> getUsuario(@PathVariable String nombre) {
         try {
             //obtener datos que se enviaran a traves del API
-            Optional<Usuario> user = usuariosS.findByName(nombre);
+
+            Usuario user = usuariosS.findByName(nombre);
             return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
 
         } catch (Exception ex) {

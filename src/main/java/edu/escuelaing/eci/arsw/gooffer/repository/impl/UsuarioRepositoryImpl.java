@@ -43,7 +43,7 @@ public class UsuarioRepositoryImpl {
     public Optional<Usuario> findById(Integer id) {
         return p.findById(id);
     }
-    public Optional<Usuario> findUsuarioByNombre(String nombre) {
+    public Usuario findUsuarioByNombre(String nombre) {
         return p.findByNombre(nombre);
     }
    /* public Usuario findByUserNombreAndPassword(String nombre,String password) {
