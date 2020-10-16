@@ -1,3 +1,4 @@
+var api = apiServicios;
 const app = (function() {
 	
 	var idServicio;
@@ -82,11 +83,57 @@ const app = (function() {
 		};
 		$.getScript("js/usuario.js", function() { api.crear(map, nameUsuario); });
 	}
-		
+	function getServicios() {
+        //api.getServicios(table);
+        api.getServicios(cards);
+    }
+	var _map = function (list){
+    	return list.map(function(servicio){
+    			return {nombre:servicio.nombre, descripcion: servicio.descripcion}
+    	})
+    }
+	function table(servicios) {
+	    servicios = _map(servicios);
+	    $("#body").html("");
+    	servicios.map(function(servicio) {
+    		$('#body')
+    			.append(
+    			  `<tr>
+    				<td>`+servicio.nombre+`</td>
+    				<td>`+servicio.descripcion+`</td>`+
+    				"<td><form><button type='button' class='btn btn-primary' onclick=''>Open</button></form></td>,"+
+    			  `</tr>`
+    			);
+    	});
+    };
+    function cards(servicios) {
+    	    servicios = _map(servicios);
+        	servicios.map(function(servicio) {
+        		   // console.log(servicio.nombre);
+        		   // console.log(servicio.descripcion);
+        		$('#row')
+        			.append(
+        			  `<div class='product--blue'>
+        			     <div class='product_inner'>
+        			        <img src='https://paizbmw.es/wp-content/uploads/2017/04/Mecanica.png' width='300'>
+                            <p>`+servicio.nombre+`</p>
+                            <p>`+servicio.descripcion+`</p>
+                            <p>Vendedor</p>
+                            <button>Ofertar</button>
+                        </div>
+                        <div class='product_overlay'>
+                            <h2>Ofertar</h2>
+                            <i class='fa fa-check'></i>
+                        </div>
+        			  </div>`
+        			);
+        	});
+        };
 	function getServiciosByVendedor() {
-        $.getScript("js/usuario.js", function(){
+        /*$.getScript("js/usuario.js", function(){
            api.getServiciosByVendedor("1", mapElemtosObjetos);
-        });
+        });*/
+        api.getServicios(table);
     }
 
     function mapElemtosObjetos(datos) {
@@ -141,6 +188,7 @@ const app = (function() {
 			}*/
 	
 	return {
+	    getServicios: getServicios,
 		salvar: salvar,
 		salvarServicio:salvarServicio,
 		validarCuenta:validarCuenta,
