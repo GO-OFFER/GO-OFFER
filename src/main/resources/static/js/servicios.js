@@ -1,6 +1,6 @@
 apiServicios = (function() {
-//    var url = "http://localhost:8080/servicios"
-    var url = "https://go-offer.herokuapp.com/servicios"
+    var url = "http://localhost:8080/servicios"
+   // var url = "https://go-offer.herokuapp.com/servicios/"
 	function getServicios(callback) {//
 	    console.log(url);
 	    $.getJSON(url,(data)=>{
