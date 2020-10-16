@@ -43,6 +43,9 @@ public class ServicioRepositoryImpl{
 		}
 		return lista;
 	}
+	public void delete(int id) {
+		servicioRepository.deleteById(id);
+	}
 
    
 }

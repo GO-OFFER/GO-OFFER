@@ -1,8 +1,14 @@
-app = (function() {
+const app = (function() {
 	
+	var idServicio;
 	var nombreUsuario;
-	var id;
+	//var id;
+	var person = {name: '', id: ''};
+	//const { Seq } = require('immutable');
+	//const myObject = { a: 1, b: 2, c: 3 };
 	
+// { a: 1, b: 4, c: 9 }
+
     function inicio() {
 		nombreUsuario = $("#usuario").val();
 		console.info(nombreUsuario);
@@ -20,10 +26,13 @@ app = (function() {
         sessionStorage.setItem("currentRol",username.rol);
         if (username.password == password){
             if(username.tipo === 1){
-                nombreUsuario= username.nombre;
-				id= username.id;
-				console.info(nombreUsuario+" nom yyy id "+ id);
+				//Seq(myObject).map(x => x * x).toObject();
+                person.name= username.nombre;
+				person.id= username.id;
+				//Object.freeze(person);
+				console.info(nombreUsuario+" nom yyy id "+ person.id);
 				location.href = "/perfilVendedor.html";
+				console.info(person);
 
             }
             else{
@@ -37,7 +46,7 @@ app = (function() {
 
 	function salvarServicio() {
 
-		
+		console.info($("#usuario").val());
 		var nameServicio = $("#nombreServicio").val();
 		var descripcion = $("#descripcion").val();
 		var tipo = $("#palabra").val();
@@ -50,7 +59,8 @@ app = (function() {
 			"descripcion": descripcion,
 			"creationdate": date
 		};
-		$.getScript("js/usuario.js", function() { api.crearServicio(map, "prueba12"); });
+		$.getScript("js/usuario.js", function() { api.crearServicio(map, "prueba1"); });
+		
 	}
 	
 	function salvar() {
@@ -71,20 +81,20 @@ app = (function() {
 			"numcompras": 0
 		};
 		$.getScript("js/usuario.js", function() { api.crear(map, nameUsuario); });
+	}
 		
 	function getServiciosByVendedor() {
-        
-        $.getScript(moduloApiclient, function(){
+        $.getScript("js/usuario.js", function(){
            api.getServiciosByVendedor("1", mapElemtosObjetos);
         });
     }
 
     function mapElemtosObjetos(datos) {
         var mapeoDatos = datos.map(function (val) {
-            return {nombre: val.nombre, 
+            return {id:val.id,
+					nombre: val.nombre, 
 				descripcion: val.descripcion};
-        });
-		console.info(nombreUsuario+" nom yyy id "+ id);
+        })
         rellenarTabla(mapeoDatos);
     }
 
@@ -97,25 +107,25 @@ app = (function() {
 		var tblBody = $("tbody");
                 
 		datos.map(function(servicio){
-                    va.movie.name= movie.movieName;
-                    va.movie.genre= movie.genre;
-            var fila = '<tr><td>' + movie.movieName + '</td><td>' 
-				+ movie.genre + '</td><td>' 
-				+ movie.hour + '</td><td>' + 
-				"<input type='button' class='show' value='Disponibilidad' onclick=" + 
-				"app.busquedaSillas()" + 
-				"></input>"+"<input type='button' class='show' value='Conectarse' onclick=" + 
-				"app.busquedaSillas()" + 
+			idServicio=servicio.id;
+            var fila = '<tr><td>' + servicio.nombre + '</td><td>' 
+				+ servicio.descripcion + '</td><td>'+ 
+				"<input type='button' class='show' value='Eliminar' onclick=" + 
+				"app.eliminarServicio("+servicio.id+")" +  
 				"></input>"	+ '</tr>';
-           
-			
             tblBody.append(fila);
         });
-		if(rellenodata){app.busquedaSillas(); rellenodata=false;}
         tabla.append(tblBody);
         tabla.append("</tbody>");
     }
-		
+
+	function eliminarServicio(id){
+		console.info(id);
+		$.getScript("js/usuario.js", function(){
+           api.eliminarServicio(id,getServiciosByVendedor);
+        });
+	
+	}
 
 		/*
 		if(rellenodata){
@@ -129,12 +139,14 @@ app = (function() {
 			$.getScript(moduloApiclient, function(){api.update(cine,va);});
 				app.getFunctionsByCinemaAndDate();
 			}*/
-	}
+	
 	return {
 		salvar: salvar,
 		salvarServicio:salvarServicio,
 		validarCuenta:validarCuenta,
-		inicio:inicio
+		inicio:inicio,
+		getServiciosByVendedor:getServiciosByVendedor,
+		eliminarServicio:eliminarServicio
 
 	}
 

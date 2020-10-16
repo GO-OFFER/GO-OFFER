@@ -74,7 +74,33 @@ api = (function() {
 		});
 
 	}
+	
+	function eliminarServicio(id,callback){
+        ///var fun = JSON.stringify(funcion);
 
+        const promise = new Promise((resolve, reject) => {
+            $.ajax({
+                url: "https://go-offer.herokuapp.com/servicios/" + id,
+                type: 'DELETE',
+                //data: fun,
+                contentType: "application/json"
+            }).done(function () {
+				Swal.fire({
+					position: 'top-end',
+					icon: 'success',
+					title: 'Servicio eliminado',
+					showConfirmButton: false,
+					timer: 1500
+				})
+				callback();
+                resolve('SUCCESS');
+
+            }).fail(function (msg) {
+                reject('FAIL');
+            });
+        });
+
+	}
 	/*function checkPassword(username,callback) {
 	    console.log(username);
 	    const promise = new Promise((resolve, reject) => {
@@ -95,7 +121,8 @@ api = (function() {
 		crear: crear,
 		crearServicio:crearServicio,
 		checkPassword:checkPassword,
-
+		getServiciosByVendedor:getServiciosByVendedor,
+		eliminarServicio:eliminarServicio
 	}
 
 })();

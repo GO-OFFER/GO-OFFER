@@ -25,7 +25,7 @@ public class ServiciosServices {
 
     }
     public void deleteServicio(int id){
-
+    	servicio.delete(id);
     }
     public List<Servicio> findAllServices(){
         return servicio.findAllServices();
