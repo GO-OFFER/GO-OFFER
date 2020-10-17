@@ -132,7 +132,7 @@ class GoofferApplicationTests {
 		assertEquals(nuevo.getNombre(), (Servicio.getNombre()));
 
 	}
-	@Test
+	/*@Test
 	public void login1() {
 		Usuario Usuario = new Usuario();
 		Random num = new Random();
@@ -173,6 +173,6 @@ class GoofferApplicationTests {
 			}
 		}
 		assertFalse(nuevo.getPassword()=="12344");
-	}
+	}*/
 
 }
