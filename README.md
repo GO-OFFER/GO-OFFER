@@ -4,7 +4,7 @@ Go Offer el sitio perfecto para ofrecer o adquirir  tus servicios  en tiempo rea
 
 ## Documentación y arquitectura en el siguiente link
 
-[![Toda la documentación detallada de nuestra aplicación se encuentra aqui](https://cesar-millitos.gitbook.io/go-offer/)
+[Toda la documentación detallada de nuestra aplicación se encuentra aqui](https://cesar-millitos.gitbook.io/go-offer/)
 
 ## Historias de usuario (Realizadas en taiga)
 
