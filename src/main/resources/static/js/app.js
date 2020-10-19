@@ -85,7 +85,7 @@ app = (function() {
 	function getServicios() {
         //apiUsuario.getServicios(table);
 		////LEER///////// parametro 1 es ID del vendedor (por ahora esta quemado como 1, pero hay que buscar pasar el id del loggeado pa que traiga los servicios del loggeado)
-        apiServicios.getServicios("1",cards); 
+        apiServicios.getServicios(cards);
     }
 	
 	var _map = function (list){

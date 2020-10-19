@@ -91,8 +91,8 @@ class GoofferApplicationTests {
 		assertEquals(nuevo.getEmail(), (Usuario.getEmail()));
 
 	}
-	@Test
-	public void DeberiaConsultarPorId() {
+	//@Test
+	/*public void DeberiaConsultarPorId() {
 		Usuario Usuario = new Usuario();
 		Random num = new Random();
 		int generator = num.nextInt(1000);
@@ -109,10 +109,10 @@ class GoofferApplicationTests {
 			if(u.getEmail().equalsIgnoreCase(Usuario.getEmail())) {
 				nuevo = u;
 			}
-		}*/
+		}
 		assertEquals("test03", (Usuario.getNombre()));
 
-	}
+	}*/
 	@Test
 	public void DeberiaInsertarServicio() {
 		Servicio Servicio = new Servicio();
