@@ -1,8 +1,8 @@
 apiServicios = (function() {
-    var url = "http://localhost:8080/servicios"
-   // var url = "https://go-offer.herokuapp.com/servicios/"
-	function getServicios(id, callback) {//
-        $.getJSON("http://localhost:8080/servicios/" + id, function (data) {
+   // var url = "http://localhost:8080/servicios"
+   var url = "https://go-offer.herokuapp.com/servicios/"
+    function getServicios(id, callback) {//
+        $.getJSON(url + id, function (data) {
             callback(data);
         });
     }
