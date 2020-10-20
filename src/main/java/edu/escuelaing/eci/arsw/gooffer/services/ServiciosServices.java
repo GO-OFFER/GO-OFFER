@@ -37,5 +37,9 @@ public class ServiciosServices {
 	public List<Servicio> findServiciosById(int id) {
 		return servicio.findServiciosById(id);
 	}
+	public void update(Servicio servi) {
+		servicio.update(servi);
+		
+	}
 
 }

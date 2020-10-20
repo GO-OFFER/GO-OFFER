@@ -128,22 +128,22 @@ app = (function() {
 	function actualizarServicio(id){
 			
 		var seleccion = $("#tabla");
-        var nameS= '<label id="nameS" for="nombre">Nuevo nombre:</label>'
-        var descrip= '<label id="descripcion" for="nombre">Nueva descripcion:</label>'
-        var in1 = '<input type="text" id="movieNew" name="movie" placeholder="Nombre Servicio">';
-		var in2='<textarea id="descripcion"	rows="4" cols="50" name="descripcion" form="usrform" placeholder="Descripcion"></textarea>';        
-		//var inGenre = '<input type="text" id="genreNew" name="genre" placeholder="Descripcion servicio">';
+        var nameS= '<label id="nameS" for="nombre">Nueva descripcion:</label>'
+        //var descrip= '<label id="descripcion" for="nombre">Nueva descripcion:</label>'
+        var in1 = '<textarea type="text" id="descripcion" rows="4" cols="50" name="descripcion" placeholder="Descripcion Servicio">';
+		//var in2='<textarea id="descripcion"	rows="4" cols="50" name="descripcion" form="usrform" placeholder="Descripcion">';        
+		//var inGenre = '<input type="text" id="descripcion" name="genre" placeholder="Descripcion servicio">';
         var id1 = '<br id="id1">';
-        var id2 = '<br id="id2">';
+        //var id2 = '<br id="id2">';
 		var boton = "<button type='button' class='btn btn-primary' onclick='app.actualizarServicioSeleccionado("+id+")'>Actualizar servicio</button>";
 
 		seleccion.append('<p>.</p>');
 		seleccion.append(nameS);
         seleccion.append(in1);
         seleccion.append(id1);
-        seleccion.append(descrip);
-        seleccion.append(in2);
-        seleccion.append(id2);
+        //seleccion.append(descrip);
+        /*seleccion.append(in2);
+        seleccion.append(id2);*/
 		seleccion.append(boton);
 
 		
@@ -161,6 +161,10 @@ app = (function() {
 	
 	function actualizarServicioSeleccionado(id){
 		////////IMPLEMENTAR (DEBERIA IR LA PETICION DE ACTUALIZAR A SERVICIOS.JS Y DE AHI AL BACK)
+		var valores={id:id,descripcion:$("#descripcion").val(),nombre:"",creacion:"",idVendedor:"1"};		
+		console.info(valores.descripcion);
+		console.info($("#descripcion").val());
+		apiServicios.actualizarServicioSeleccionado(id,valores);
 	}
 	
     function cards(servicios) {

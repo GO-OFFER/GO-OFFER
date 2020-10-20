@@ -46,6 +46,12 @@ public class ServicioRepositoryImpl{
 	public void delete(int id) {
 		servicioRepository.deleteById(id);
 	}
+	public void update(Servicio servi) {
+		//servicioRepository.updateById(servi.getId(),servi.getDescripcion());
+		Servicio s=servicioRepository.findById(servi.getId()).get();
+		s.setDescripcion(servi.getDescripcion());
+		servicioRepository.save(s);
+	}
 
    
 }

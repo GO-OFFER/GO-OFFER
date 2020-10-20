@@ -43,10 +43,8 @@
     <nav id="sidebar">
         <div class="menu_section">
             <ul>
-                <li><a>USARIO VENDEDOR</a></li>
-                <li><a href="perfilVendedor.html">Home GO-OFFER</a></li>
-                <li><a href="registroServicio.html">Registrar un nuevo servico</a></li>
-                <li><a href="eliminarServicio.html">Eliminar Servicio</a></li>
+                <li><a href="perfilVendedor.html">PERFIL VENDEDOR</a></li>
+                <li><a href="about.html">About</a></li>
             </ul>
         </div>
     </nav>
@@ -61,6 +59,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
+                    	
                         <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn"><img src="images/menu_icon.png"></button>
                     </div>
                 </div>
@@ -91,8 +90,11 @@
             </div>-->
         <div class="section about_section layout_padding dash_bg">
             <div class="container" id = "container">
+            	<div id="boton" style="text-align: center">
                 <button type="button" class="btn btn-primary" onclick="app.getServicios()">Mostrar servicios</button>
+                </div>
                 <div id = 'row' class='row' onLoad="app.getServicios()">
+                
                     <!-- <div class='product--blue'>
                        <div class='product_inner'>
                            <img src='http://wellandgood.com/wp-content/uploads/2012/07/Nike-Free-30-Womens-Running-Shoe-511495_600_A.png' width='300'>

@@ -31,7 +31,7 @@ public class Servicio {
     private Date creationdate;
 	
 
-    public Servicio(int id, int idVendedor, String nombre, String descripcion, Palabra categoria, Date creacion) {
+    public Servicio(int id, int idVendedor, String nombre, String descripcion,  Date creacion) {
         this.id = id;
         this.idusuario = idVendedor;
         this.nombre = nombre;

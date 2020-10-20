@@ -68,7 +68,17 @@ public class ServiciosController {
 	            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
 	                return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
 	            }
+	    }
+	 @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	    public ResponseEntity<?> putResourceCinemaByName(@PathVariable int id,@RequestBody Servicio servi) {
+	        try {
+	        	serviciosService.update(servi);
+	        	return new ResponseEntity<>(HttpStatus.OK);
+	        } catch (Exception ex) {
+	        	Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+	        	return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
 	        }
+	    }
 
 	
 }
