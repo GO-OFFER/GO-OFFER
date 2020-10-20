@@ -2,7 +2,7 @@ apiServicios = (function() {
   	//var url = "http://localhost:8080/servicios"
    var url = "https://go-offer.herokuapp.com/servicios/"
     function getServiciosByVendedor(id, callback) {//
-        $.getJSON("http://localhost:8080/servicios/" + id, function (data) {
+        $.getJSON("https://go-offer.herokuapp.com/servicios/" + id, function (data) {
             callback(data);
         });
     }
