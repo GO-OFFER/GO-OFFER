@@ -45,7 +45,7 @@ header i:nth-of-type(2) {
 }
 
 .product, .product--blue, .product--orange, .product--red, .product--green, .product--yellow, .product--pink {
-  box-shadow: 1px 5px 15px #CCC;
+  box-shadow:10px 5px 1px #CCC;
   width: 15em;
   height: auto;
   border-radius: 3px;
@@ -60,7 +60,7 @@ header i:nth-of-type(2) {
   background: linear-gradient(-45deg, #92DCE5 50%, rgba(255, 255, 255, 0.5) 50%);
 }
 .product--orange {
-  background: linear-gradient(-45deg, #EF6F6C 50%, rgba(255, 255, 255, 0.5) 50%);
+  background: linear-gradient(-45deg,  #FF4500 50%, #1C00B9 50% );
 }
 .product--red {
   background: linear-gradient(-45deg, #E84855 50%, rgba(255, 255, 255, 0.5) 50%);

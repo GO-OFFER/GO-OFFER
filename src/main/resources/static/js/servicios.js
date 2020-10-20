@@ -1,8 +1,8 @@
 apiServicios = (function() {
-   // var url = "http://localhost:8080/servicios"
-   var url = "https://go-offer.herokuapp.com/servicios/"
-    function getServicios(id, callback) {//
-        $.getJSON(url + id, function (data) {
+  	var url = "http://localhost:8080/servicios"
+   //var url = "https://go-offer.herokuapp.com/servicios/"
+    function getServiciosByVendedor(id, callback) {//
+        $.getJSON("http://localhost:8080/servicios/" + id, function (data) {
             callback(data);
         });
     }
@@ -21,7 +21,7 @@ apiServicios = (function() {
 		var fun = JSON.stringify(map);
 		const promise = new Promise((resolve, reject) => {
 			$.ajax({
-				url: "https://go-offer.herokuapp.com/servicios/"+name,
+				url: "http://localhost:8080/servicios/"+name,
 				type: 'POST',
 				data: fun,
 				contentType: "application/json"
@@ -43,12 +43,12 @@ apiServicios = (function() {
 	}
 	
 	
-	function eliminarServicio(id,callback){
+	function eliminarServicio(id){
         ///var fun = JSON.stringify(funcion);
 
         const promise = new Promise((resolve, reject) => {
             $.ajax({
-                url: "https://go-offer.herokuapp.com/servicios/" + id,
+                url: "http://localhost:8080/servicios/" + id,
                 type: 'DELETE',
                 //data: fun,
                 contentType: "application/json"
@@ -60,7 +60,7 @@ apiServicios = (function() {
 					showConfirmButton: false,
 					timer: 1500
 				})
-				callback();
+				//callback();
                 resolve('SUCCESS');
 
             }).fail(function (msg) {
@@ -74,7 +74,8 @@ apiServicios = (function() {
 	return {
 		getServicios: getServicios,
 		crearServicio:crearServicio,
-		eliminarServicio:eliminarServicio
+		eliminarServicio:eliminarServicio,
+		getServiciosByVendedor:getServiciosByVendedor
 	}
 
 })();

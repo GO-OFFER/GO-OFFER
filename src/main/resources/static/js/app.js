@@ -84,9 +84,21 @@ app = (function() {
 	}
 	function getServicios() {
         //apiUsuario.getServicios(table);
-		////LEER///////// parametro 1 es ID del vendedor (por ahora esta quemado como 1, pero hay que buscar pasar el id del loggeado pa que traiga los servicios del loggeado)
         apiServicios.getServicios(cards);
     }
+	function getServiciosByVendedor() {
+        //apiUsuario.getServicios(table);
+		////LEER///////// parametro 1 es ID del vendedor (por ahora esta quemado como 1, pero hay que buscar pasar el id del loggeado pa que traiga los servicios del loggeado)
+        apiServicios.getServiciosByVendedor("1",table);
+    }
+	
+	/*function getServiciosByVendedor() {
+        $.getScript("js/usuario.js", function(){
+           api.getServiciosByVendedor("1", mapElemtosObjetos);
+        });
+        apiServicios.getServicios(table);
+    }*/
+
 	
 	var _map = function (list){
     	return list.map(function(val){
@@ -111,6 +123,7 @@ app = (function() {
 					"</form></td>,"+ '</tr>'
     			);
     	});
+	apiServicios.getServiciosByVendedor("1",table);
     }
 	function actualizarServicio(id){
 			
@@ -138,6 +151,14 @@ app = (function() {
 
 		}
 	
+	function eliminarServicio(id){
+		console.info(id);
+		$.getScript("js/servicios.js", function(){
+           apiServicios.eliminarServicio(id);
+        });
+	
+	}
+	
 	function actualizarServicioSeleccionado(id){
 		////////IMPLEMENTAR (DEBERIA IR LA PETICION DE ACTUALIZAR A SERVICIOS.JS Y DE AHI AL BACK)
 	}
@@ -149,12 +170,11 @@ app = (function() {
         		   // console.log(servicio.descripcion);
         		$('#row')
         			.append(
-        			  '<div class=product--blue>'+
+        			  '<div class=product--orange>'+
         			     '<div class=product_inner>'+
         			        '<img src=https://paizbmw.es/wp-content/uploads/2017/04/Mecanica.png width=300>'+
-                            '<p>'+servicio.nombre+'</p>'+
-                            '<p>'+servicio.descripcion+'</p>'+
-                            '<p>Vendedor</p>'+
+                            '<p style = "font-family:arial; font-size: 1.8em;">'+servicio.nombre+'</p>'+
+                            '<p style = "font-family:arial; font-size: 1.7em;">'+servicio.descripcion+'</p>'+
                             '<button>Ofertar</button>'+
                         '</div>'+
                         '<div class=product_overlay>'+
@@ -165,13 +185,7 @@ app = (function() {
         			);
         	});
         };
-	function getServiciosByVendedor() {
-        /*$.getScript("js/usuario.js", function(){
-           api.getServiciosByVendedor("1", mapElemtosObjetos);
-        });*/
-        apiServicios.getServicios(table);
-    }
-
+	
     /*function mapElemtosObjetos(datos) {
         var mapeoDatos = datos.map(function (val) {
             return {id:val.id,
@@ -202,13 +216,7 @@ app = (function() {
         tabla.append("</tbody>");
     }*/
 
-	function eliminarServicio(id){
-		console.info(id);
-		$.getScript("js/servicios.js", function(){
-           apiServicios.eliminarServicio(id,getServiciosByVendedor);
-        });
 	
-	}
 
 		/*
 		if(rellenodata){
