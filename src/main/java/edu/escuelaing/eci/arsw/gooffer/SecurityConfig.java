@@ -1,6 +1,5 @@
 package edu.escuelaing.eci.arsw.gooffer;
 
-import edu.escuelaing.eci.arsw.gooffer.auth.handler.LoginSuccessHandler;
 import edu.escuelaing.eci.arsw.gooffer.services.UsuariosServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,8 +21,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private BCryptPasswordEncoder  bCrypt;
 
-    @Autowired
-    private LoginSuccessHandler successHandler;
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -50,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers(   "/usuarios", "/registro.html", "/servicios","/registroServicio.html", "/eliminarServicio.html","/servicios/**", "/usuarios/**","/contact.html","/index.html","/about.html").permitAll()
                     .anyRequest().authenticated()
                     .and()
-                .formLogin().successHandler(successHandler)
+                .formLogin()
                     .loginPage("/loginprueba.html").permitAll()
                     .defaultSuccessUrl("/servicios.html", true)
                     .failureUrl("/login?error")
