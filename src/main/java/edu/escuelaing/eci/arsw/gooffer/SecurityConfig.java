@@ -43,33 +43,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //Especificar el encargado del login y encriptacion del password
         auth.userDetailsService(userDetailsService).passwordEncoder(bCrypt);
     }
-    /*@Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.userDetailsService(userDetailsService).passwordEncoder(bCrypt);
-            //auth.userDetailsService(userDetailsService);
-    }*/
-    /*@Autowired
-    public void configurerGlobal(AuthenticationManagerBuilder builder) throws Exception{
-        PasswordEncoder encoder = passwordEncoder();
-        User.UserBuilder user = User.builder().passwordEncoder(encoder::encode);
-
-        builder.inMemoryAuthentication()
-        .withUser(user.username("admin").password("123").roles("vendedor","comprador"))
-        .withUser(user.username("user").password("123").roles("vendedor","comprador"));
-    }*/
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        /*
-        http.authorizeRequests()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .formLogin().loginPage("/login")
-                .permitAll()
-                .and()
-                .logout().permitAll();
 
-         */
         http.authorizeRequests()
                     .antMatchers(   "/usuarios", "/registro.html", "/servicios","/registroServicio.html", "/eliminarServicio.html","/servicios/**", "/usuarios/**","/contact.html","/index.html","/about.html").permitAll()
                     .anyRequest().authenticated()
@@ -88,13 +64,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors().and().
                 csrf().disable();
     }
-    /*@Override
-    protected void configure(HttpSecurity http) throws Exception{
-        http
-                .authorizeRequests()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .httpBasic();
-    }*/
+    
 }
