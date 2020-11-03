@@ -63,7 +63,7 @@ public class UsuariosServices implements UserDetailsService {
         roles.add(new SimpleGrantedAuthority("Comprador"));
         roles.add(new SimpleGrantedAuthority("1"));
         roles.add(new SimpleGrantedAuthority("2"));*/
-        UserDetails userD = new User(us.getEmail(),us.getPassword(),new ArrayList<>());
+        UserDetails userD = new User(us.getEmail(),us.getPassword(),true,true,true,true,new ArrayList<>());
         return userD;
     }
     //public Usuario findByNameAndPassword(String username,String password) {

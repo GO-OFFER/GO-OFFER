@@ -1,5 +1,6 @@
 package edu.escuelaing.eci.arsw.gooffer;
 
+import edu.escuelaing.eci.arsw.gooffer.auth.handler.LoginSuccessHandler;
 import edu.escuelaing.eci.arsw.gooffer.services.UsuariosServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -9,12 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
-import javax.naming.AuthenticationNotSupportedException;
 
 @Configuration
 @EnableWebSecurity
@@ -25,6 +21,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private BCryptPasswordEncoder  bCrypt;
+
+    @Autowired
+    private LoginSuccessHandler successHandler;
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -71,51 +70,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().permitAll();
 
          */
-        http
-                .authorizeRequests()
-                .antMatchers(   "/usuarios", "/registro.html", "/servicios","/registroServicio.html", "/eliminarServicio.html","/servicios/**", "/usuarios/**","/contact.html","/index.html","/about.html").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/loginprueba.html").permitAll()
-                .and()
-                .formLogin()
-                .defaultSuccessUrl("/servicios.html", true)
-                .failureUrl("/login?error")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .and()
+        http.authorizeRequests()
+                    .antMatchers(   "/usuarios", "/registro.html", "/servicios","/registroServicio.html", "/eliminarServicio.html","/servicios/**", "/usuarios/**","/contact.html","/index.html","/about.html").permitAll()
+                    .anyRequest().authenticated()
+                    .and()
+                .formLogin().successHandler(successHandler)
+                    .loginPage("/loginprueba.html").permitAll()
+                    .defaultSuccessUrl("/servicios.html", true)
+                    .failureUrl("/login?error")
+                    .usernameParameter("username")
+                    .passwordParameter("password")
+                    .and()
                 .logout()
-                .permitAll()
-                .logoutSuccessUrl("/login?logout")
-                .and()
+                    .permitAll()
+                    .logoutSuccessUrl("/login?logout")
+                    .and()
                 .cors().and().
                 csrf().disable();
     }
-   /* @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .antMatchers( "/favicon.png",  "/usuarios", "/registro.html", "/servicios", "/servicios/**", "/usuarios/**","/contact.html","/index.html","/about.html").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login.html").permitAll()
-                .and()
-                .formLogin()
-                .defaultSuccessUrl("/perfilVendedor", false)
-                .failureUrl("/login?error")
-                .usernameParameter("usuario")
-                .passwordParameter("pass")
-                .and()
-                .logout()
-                .permitAll()
-                .logoutSuccessUrl("/login?logout")
-                .and()
-                .cors().and().
-                csrf().disable();
-    }
-
     /*@Override
     protected void configure(HttpSecurity http) throws Exception{
         http

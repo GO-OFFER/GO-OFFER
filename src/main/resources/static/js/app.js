@@ -62,7 +62,17 @@ app = (function() {
 		$.getScript("js/servicios.js", function() { apiServicios.crearServicio(map, "servicio"); });
 		
 	}
-	
+	function setUserLogged(nickname){
+            console.log(nickname);
+            localStorage.setItem("selectedUser",nickname);
+    }
+	function printUserLogged(){
+		if (localStorage.getItem("selectedUser") !== undefined){
+			console.log('user');
+			console.log(localStorage.getItem("selectedUser"));
+
+		}
+    }
 	function salvar() {
 
 		var nameUsuario = $("#usuario").val();
@@ -84,21 +94,20 @@ app = (function() {
 	}
 	function getServicios() {
         //apiUsuario.getServicios(table);
+        printUserLogged();
         apiServicios.getServicios(cards);
     }
 	function getServiciosByVendedor() {
+
+        apiUsuario.getUsuarioByNombre(localStorage.getItem("selectedUser"),getUsuarioByNombre);
+
+    }
+    function getUsuarioByNombre(user){
         //apiUsuario.getServicios(table);
 		////LEER///////// parametro 1 es ID del vendedor (por ahora esta quemado como 1, pero hay que buscar pasar el id del loggeado pa que traiga los servicios del loggeado)
-        apiServicios.getServiciosByVendedor("1",table);
+		//console.log(user);
+        apiServicios.getServiciosByVendedor(user.id,table);
     }
-	
-	/*function getServiciosByVendedor() {
-        $.getScript("js/usuario.js", function(){
-           api.getServiciosByVendedor("1", mapElemtosObjetos);
-        });
-        apiServicios.getServicios(table);
-    }*/
-
 	
 	var _map = function (list){
     	return list.map(function(val){
@@ -190,52 +199,9 @@ app = (function() {
         	});
         };
 	
-    /*function mapElemtosObjetos(datos) {
-        var mapeoDatos = datos.map(function (val) {
-            return {id:val.id,
-					nombre: val.nombre, 
-				descripcion: val.descripcion};
-        })
-        rellenarTabla(mapeoDatos);
-    }*/
-
-    /*function rellenarTabla(datos) {
-        var tabla = $("table");
-        var body = $("tbody");
-        if (body != null) {body.remove();}
-        
-		tabla.append("<tbody>");
-		var tblBody = $("tbody");
-                
-		datos.map(function(servicio){
-			idServicio=servicio.id;
-            var fila = '<tr><td>' + servicio.nombre + '</td><td>' 
-				+ servicio.descripcion + '</td><td>'+ 
-				"<input type='button' class='show' value='Eliminar' onclick=" + 
-				"app.eliminarServicio("+servicio.id+")" +  
-				"></input>"	+ '</tr>';
-            tblBody.append(fila);
-        });
-        tabla.append(tblBody);
-        tabla.append("</tbody>");
-    }*/
-
-	
-
-		/*
-		if(rellenodata){
-			newFunction();
-			rellenodata=false;
-		}else{
-			va.date=newDate;
-			fecha=newDate;
-			console.info(va);
-			console.info(cine);
-			$.getScript(moduloApiclient, function(){api.update(cine,va);});
-				app.getFunctionsByCinemaAndDate();
-			}*/
-	
 	return {
+	    setUserLogged : setUserLogged,
+	    printUserLogged : printUserLogged,
 	    getServicios: getServicios,
 		salvar: salvar,
 		salvarServicio:salvarServicio,
