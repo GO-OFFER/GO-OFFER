@@ -44,7 +44,7 @@ class GoofferApplicationTests {
 	 @Autowired
 	 private ServiciosServices us4;
 
-
+/*
 	@Test
 	void consultaTablaUsuarios() {
 		assertTrue(us.findAllUsers()!=null);
