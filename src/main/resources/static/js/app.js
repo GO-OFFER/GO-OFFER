@@ -7,6 +7,7 @@ app = (function() {
 	var person = {name: '', id: ''};
 	//const { Seq } = require('immutable');
 	//const myObject = { a: 1, b: 2, c: 3 };
+	var idLogg=0;
 
     function inicio() {
 		nombreUsuario = $("#usuario").val();
@@ -43,7 +44,7 @@ app = (function() {
         }
     }
 
-	function salvarServicio() {
+	function salvarServicio(user) {
 
 		//console.info($("#usuario").val());
 		var nameServicio = $("#nombreServicio").val();
@@ -52,16 +53,25 @@ app = (function() {
 		var f = new Date();
 		var date= f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
 		console.info(date);
-		var map = {
-			"idVendedor":1, ////LEER///////// parametro 1 es ID del vendedor (por ahora esta quemado como 1, pero hay que buscar pasar el id del loggeado pa que traiga los servicios del loggeado)
+		
+		if (user==null ){
+			apiUsuario.getUsuarioByNombre(localStorage.getItem("selectedUser"),salvarServicio);
+		}else {
+			console.info(idLogg+"  nameeeeee");
+			var map = {
+			"idVendedor":idLogg, ////LEER///////// parametro 1 es ID del vendedor (por ahora esta quemado como 1, pero hay que buscar pasar el id del loggeado pa que traiga los servicios del loggeado)
 			"nombre": nameServicio,
 			"descripcion": descripcion,
 			"creationdate": date
 		};
 			
 		$.getScript("js/servicios.js", function() { apiServicios.crearServicio(map, "servicio"); });
+		}
+		
 		
 	}
+	
+	
 	function setUserLogged(nickname){
             console.log(nickname);
             localStorage.setItem("selectedUser",nickname);
@@ -70,9 +80,10 @@ app = (function() {
 		if (localStorage.getItem("selectedUser") !== undefined){
 			console.log('user');
 			console.log(localStorage.getItem("selectedUser"));
-
 		}
     }
+
+
 	function salvar() {
 
 		var nameUsuario = $("#usuario").val();
@@ -98,14 +109,17 @@ app = (function() {
         apiServicios.getServicios(cards);
     }
 	function getServiciosByVendedor() {
-
+		
         apiUsuario.getUsuarioByNombre(localStorage.getItem("selectedUser"),getUsuarioByNombre);
-
     }
+
     function getUsuarioByNombre(user){
         //apiUsuario.getServicios(table);
 		////LEER///////// parametro 1 es ID del vendedor (por ahora esta quemado como 1, pero hay que buscar pasar el id del loggeado pa que traiga los servicios del loggeado)
 		//console.log(user);
+		
+		idLogg=user.id;
+		console.info(idLogg+"  iiiiiiiiim");
         apiServicios.getServiciosByVendedor(user.id,table);
     }
 	
@@ -132,8 +146,9 @@ app = (function() {
 					"</form></td>,"+ '</tr>'
     			);
     	});
-	apiServicios.getServiciosByVendedor("1",table);
+	apiServicios.getServiciosByVendedor(idLogg,table);
     }
+
 	function actualizarServicio(id){
 			
 		var seleccion = $("#tabla");
