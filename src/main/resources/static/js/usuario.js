@@ -1,13 +1,13 @@
 apiUsuario = (function() {
 
 	 function getServiciosByVendedor(id, callback) {//
-        $.getJSON("https://go-offer.herokuapp.com/servicios/" + id, function (data) {
+        $.getJSON("servicios/" + id, function (data) {
             callback(data);
         });
     }
 	function getUsuarioByNombre(name, callback) {//
 	    console.log(name);
-        $.getJSON("https://go-offer.herokuapp.com/usuarios/"+name, function (data) {
+        $.getJSON("usuarios/"+name, function (data) {
             callback(data);
         });
     }
