@@ -52,6 +52,9 @@ public class ServicioRepositoryImpl{
 		s.setDescripcion(servi.getDescripcion());
 		servicioRepository.save(s);
 	}
+	public Optional<Servicio> findServiciosByIdAndName(int id) {
+		return servicioRepository.findById(id);
+	}
 
    
 }

@@ -1,9 +1,14 @@
 apiServicios = (function() {
-  	var url = "http://localhost:8080/servicios"
-   //var url = "https://go-offer.herokuapp.com/servicios/"
+  	 var url = "http://localhost:8080/servicios"
+   // var url = "https://go-offer.herokuapp.com/servicios/"
     function getServiciosByVendedor(id, callback) {//
-        $.getJSON("http://localhost:8080/servicios/" + id, function (data) {
+        $.getJSON("servicios/" + id, function (data) {
             callback(data);
+        });
+    }
+	function getServicioById(id,name,callback) {//
+        $.getJSON("servicios/" + id +"/" + name, function (data) {
+			callback(data);
         });
     }
 	function getServicios(callback) {//
@@ -21,7 +26,7 @@ apiServicios = (function() {
 		var fun = JSON.stringify(map);
 		const promise = new Promise((resolve, reject) => {
 			$.ajax({
-				url: "http://localhost:8080/servicios/"+name,
+				url: "servicios/"+name,
 				type: 'POST',
 				data: fun,
 				contentType: "application/json"
@@ -48,7 +53,7 @@ apiServicios = (function() {
 
         const promise = new Promise((resolve, reject) => {
             $.ajax({
-                url: "http://localhost:8080/servicios/" + id,
+                url: "servicios/" + id,
                 type: 'DELETE',
                 //data: fun,
                 contentType: "application/json"
@@ -74,7 +79,7 @@ apiServicios = (function() {
 	var fun = JSON.stringify(val);
         const promise = new Promise((resolve, reject) => {
             $.ajax({
-                url: "http://localhost:8080/servicios/" + id,
+                url: "servicios/" + id,
                 type: 'PUT',
                 data: fun,
                 contentType: "application/json"
@@ -97,6 +102,7 @@ apiServicios = (function() {
     }
 
 	return {
+		getServicioById:getServicioById,
 		getServicios: getServicios,
 		crearServicio:crearServicio,
 		eliminarServicio:eliminarServicio,

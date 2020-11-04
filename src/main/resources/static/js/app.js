@@ -1,89 +1,89 @@
 //var api = apiServicios; 
 app = (function() {
-	
+
 	var idServicio;
 	var nombreUsuario;
+	var idLogg = 0;
+	var map;
 	//var id;
-	var person = {name: '', id: ''};
+	var person = { name: '', id: '' };
 	//const { Seq } = require('immutable');
 	//const myObject = { a: 1, b: 2, c: 3 };
 	var idLogg=0;
 
-    function inicio() {
+	function inicio() {
 		nombreUsuario = $("#usuario").val();
 		console.info(nombreUsuario);
-		
-		$.getScript("js/usuario.js", function() { apiUsuario.checkPassword(nombreUsuario,validarCuenta); });
+
+		$.getScript("js/usuario.js", function() { apiUsuario.checkPassword(nombreUsuario, validarCuenta); });
 	}
-    var validarCuenta = function(username){
-        var password = $('#pass').val();
-        //var hash = CryptoJS.SHA256(password);
-        console.log(password);
-        console.log(username.nombre);
-        console.log(username.tipo);
-        console.log(username.password);
-        sessionStorage.setItem("currentUser",username.nombre);
-        sessionStorage.setItem("currentRol",username.rol);
-        if (username.password == password){
-            if(username.tipo === 1){
+	var validarCuenta = function(username) {
+		var password = $('#pass').val();
+		//var hash = CryptoJS.SHA256(password);
+		console.log(password);
+		console.log(username.nombre);
+		console.log(username.tipo);
+		console.log(username.password);
+		sessionStorage.setItem("currentUser", username.nombre);
+		sessionStorage.setItem("currentRol", username.rol);
+		if (username.password == password) {
+			if (username.tipo === 1) {
 				//Seq(myObject).map(x => x * x).toObject();
-                person.name= username.nombre;
-				person.id= username.id;
+				person.name = username.nombre;
+				person.id = username.id;
 				//Object.freeze(person);
-				console.info(nombreUsuario+" nom yyy id "+ person.id);
+				console.info(nombreUsuario + " nom yyy id " + person.id);
 				location.href = "/perfilVendedor.html";
 				console.info(person);
 
-            }
-            else{
-               location.href = "/registroServicio.html";
-            }
-        }
-        else {
-            alert("ContraseÃ±a incorrecta");
-        }
-    }
+			}
+			else {
+				location.href = "/registroServicio.html";
+			}
+		}
+		else {
+			alert("ContraseÃ±a incorrecta");
+		}
+	}
 
 	function salvarServicio(user) {
-
 		//console.info($("#usuario").val());
+		var flag=true;
 		var nameServicio = $("#nombreServicio").val();
 		var descripcion = $("#descripcion").val();
 		var tipo = $("#palabra").val();
 		var f = new Date();
-		var date= f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
-		console.info(date);
-		
-		if (user==null ){
-			apiUsuario.getUsuarioByNombre(localStorage.getItem("selectedUser"),salvarServicio);
-		}else {
-			console.info(idLogg+"  nameeeeee");
-			var map = {
-			"idVendedor":idLogg, ////LEER///////// parametro 1 es ID del vendedor (por ahora esta quemado como 1, pero hay que buscar pasar el id del loggeado pa que traiga los servicios del loggeado)
-			"nombre": nameServicio,
-			"descripcion": descripcion,
-			"creationdate": date
-		};
-			
-		$.getScript("js/servicios.js", function() { apiServicios.crearServicio(map, "servicio"); });
+		var date = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
+		if(user==null){
+	
+			apiUsuario.getUsuarioByNombre(localStorage.getItem("selectedUser"), salvarServicio);
+
+		}else{
+			map = {
+				"idVendedor": user.id, ////LEER///////// parametro 1 es ID del vendedor (por ahora esta quemado como 1, pero hay que buscar pasar el id del loggeado pa que traiga los servicios del loggeado)
+				"nombre": nameServicio,
+				"descripcion": descripcion,
+				"creationdate": date
+			};
+			console.info(user.id+ "esto aqui :()");
+			console.info(map+" yo tambien ");
+			$.getScript("js/servicios.js", function() {apiServicios.crearServicio(map,map.nombre); });
 		}
-		
-		
 	}
 	
+
+	function setUserLogged(nickname) {
+		console.log(nickname);
+		localStorage.setItem("selectedUser", nickname);
+	}
 	
-	function setUserLogged(nickname){
-            console.log(nickname);
-            localStorage.setItem("selectedUser",nickname);
-    }
-	function printUserLogged(){
-		if (localStorage.getItem("selectedUser") !== undefined){
+	function printUserLogged() {
+		if (localStorage.getItem("selectedUser") !== undefined) {
 			console.log('user');
 			console.log(localStorage.getItem("selectedUser"));
 		}
-    }
 
-
+	}
 	function salvar() {
 
 		var nameUsuario = $("#usuario").val();
@@ -104,128 +104,168 @@ app = (function() {
 		$.getScript("js/usuario.js", function() { apiUsuario.crear(map, nameUsuario); });
 	}
 	function getServicios() {
-        //apiUsuario.getServicios(table);
-        printUserLogged();
-        apiServicios.getServicios(cards);
-    }
+		//apiUsuario.getServicios(table);
+		printUserLogged();
+		apiServicios.getServicios(cards);
+	}
 	function getServiciosByVendedor() {
-		
-        apiUsuario.getUsuarioByNombre(localStorage.getItem("selectedUser"),getUsuarioByNombre);
-    }
 
-    function getUsuarioByNombre(user){
-        //apiUsuario.getServicios(table);
+		apiUsuario.getUsuarioByNombre(localStorage.getItem("selectedUser"), getUsuarioByNombre);
+
+	}
+	function getUsuarioByNombre(user) {
+		//apiUsuario.getServicios(table);
 		////LEER///////// parametro 1 es ID del vendedor (por ahora esta quemado como 1, pero hay que buscar pasar el id del loggeado pa que traiga los servicios del loggeado)
 		//console.log(user);
-		
 		idLogg=user.id;
-		console.info(idLogg+"  iiiiiiiiim");
-        apiServicios.getServiciosByVendedor(user.id,table);
-    }
-	
-	var _map = function (list){
-    	return list.map(function(val){
-    			return {id:val.id,
-					nombre: val.nombre, 
-				descripcion: val.descripcion}
-    	})
-    }
-	
-	function table(servicios) {
-	    servicios = _map(servicios);
-	    $("#body").html("");
-    	servicios.map(function(servicio) {
-    		$('#body')
-    			.append(
-					'<tr><td>'
-					+servicio.nombre+'</td><td>'
-					+servicio.descripcion+'</td>'+
-    				"<td><form>"+
-					"<button type='button' class='btn btn-primary' onclick='app.eliminarServicio("+servicio.id+")'>Eliminar</button>"+
-					"<button type='button' class='btn btn-primary' onclick='app.actualizarServicio("+servicio.id+")'>Actualizar</button>"+
-					"</form></td>,"+ '</tr>'
-    			);
-    	});
-	apiServicios.getServiciosByVendedor(idLogg,table);
-    }
+		apiServicios.getServiciosByVendedor(user.id, table);
+	}
 
-	function actualizarServicio(id){
-			
+	var _map = function(list) {
+		return list.map(function(val) {
+			return {
+				id: val.id,
+				nombre: val.nombre,
+				descripcion: val.descripcion
+			}
+		})
+	}
+
+	function table(servicios) {
+		servicios = _map(servicios);
+		$("#body").html("");
+		servicios.map(function(servicio) {
+			$('#body')
+				.append(
+					'<tr><td>'
+					+ servicio.nombre + '</td><td>'
+					+ servicio.descripcion + '</td>' +
+					"<td><form>" +
+					"<button type='button' class='btn btn-primary' onclick='app.eliminarServicio(" + servicio.id + ")'>Eliminar</button>" +
+					"<button type='button' class='btn btn-primary' onclick='app.actualizarServicio(" + servicio.id + ")'>Actualizar</button>" +
+					"</form></td>," + '</tr>'
+				);
+		});
+		apiServicios.getServiciosByVendedor(idLogg, table);
+	}
+	function actualizarServicio(id) {
+
 		var seleccion = $("#tabla");
-        var nameS= '<label id="nameS" for="nombre">Nueva descripcion:</label>'
-        //var descrip= '<label id="descripcion" for="nombre">Nueva descripcion:</label>'
-        var in1 = '<textarea type="text" id="descripcion" rows="4" cols="50" name="descripcion" placeholder="Descripcion Servicio">';
+		var nameS = '<label id="nameS" for="nombre">Nueva descripcion:</label>'
+		//var descrip= '<label id="descripcion" for="nombre">Nueva descripcion:</label>'
+		var in1 = '<textarea type="text" id="descripcion" rows="4" cols="50" name="descripcion" placeholder="Descripcion Servicio">';
 		//var in2='<textarea id="descripcion"	rows="4" cols="50" name="descripcion" form="usrform" placeholder="Descripcion">';        
 		//var inGenre = '<input type="text" id="descripcion" name="genre" placeholder="Descripcion servicio">';
-        var id1 = '<br id="id1">';
-        //var id2 = '<br id="id2">';
-		var boton = "<button type='button' class='btn btn-primary' onclick='app.actualizarServicioSeleccionado("+id+")'>Actualizar servicio</button>";
+		var id1 = '<br id="id1">';
+		//var id2 = '<br id="id2">';
+		var boton = "<button type='button' class='btn btn-primary' onclick='app.actualizarServicioSeleccionado(" + id + ")'>Actualizar servicio</button>";
 
 		seleccion.append('<p>.</p>');
 		seleccion.append(nameS);
-        seleccion.append(in1);
-        seleccion.append(id1);
-        //seleccion.append(descrip);
+		seleccion.append(in1);
+		seleccion.append(id1);
+		//seleccion.append(descrip);
         /*seleccion.append(in2);
         seleccion.append(id2);*/
 		seleccion.append(boton);
 
-		
+
 		//rellenodata=true;
 
-		}
-	
-	function eliminarServicio(id){
-		console.info(id);
-		$.getScript("js/servicios.js", function(){
-           apiServicios.eliminarServicio(id);
-        });
-	
 	}
-	
-	function actualizarServicioSeleccionado(id){
+
+	function eliminarServicio(id) {
+		console.info(id);
+		$.getScript("js/servicios.js", function() {
+			apiServicios.eliminarServicio(id);
+		});
+
+	}
+
+	function actualizarServicioSeleccionado(id) {
 		////////IMPLEMENTAR (DEBERIA IR LA PETICION DE ACTUALIZAR A SERVICIOS.JS Y DE AHI AL BACK)
-		var valores={id:id,descripcion:$("#descripcion").val(),nombre:"",creacion:"",idVendedor:"1"};		
+		var valores = { id: id, descripcion: $("#descripcion").val(), nombre: "", creacion: "", idVendedor: "1" };
 		console.info(valores.descripcion);
 		console.info($("#descripcion").val());
-		apiServicios.actualizarServicioSeleccionado(id,valores);
+		apiServicios.actualizarServicioSeleccionado(id, valores);
+	}
+
+	function cards(servicios) {
+		servicios = _map(servicios);
+		servicios.map(function(servicio) {
+			// console.log(servicio.nombre);
+			// console.log(servicio.descripcion);
+			$('#row')
+				.append(
+					'<div class=product--orange>' +
+					'<div class=product_inner>' +
+					'<img src=https://paizbmw.es/wp-content/uploads/2017/04/Mecanica.png width=300>' +
+					'<p style = "font-family:arial; font-size: 1.8em;">' + servicio.nombre + '</p>' +
+					"<button type='button' onclick='app.servicioSeleccionado("+servicio.id+")'>Ver </button>" +
+					'</div>' +
+					'<div class=product_overlay>' +
+					'<h2>Ofertar</h2>' +
+					'<i class=fa fa-check></i>' +
+					'</div>' +
+					'</div>'
+				);
+		});
+		
 	}
 	
-    function cards(servicios) {
-    	    servicios = _map(servicios);
-        	servicios.map(function(servicio) {
-        		   // console.log(servicio.nombre);
-        		   // console.log(servicio.descripcion);
-        		$('#row')
-        			.append(
-        			  '<div class=product--orange>'+
-        			     '<div class=product_inner>'+
-        			        '<img src=https://paizbmw.es/wp-content/uploads/2017/04/Mecanica.png width=300>'+
-                            '<p style = "font-family:arial; font-size: 1.8em;">'+servicio.nombre+'</p>'+
-                            '<p style = "font-family:arial; font-size: 1.7em;">'+servicio.descripcion+'</p>'+
-                            '<button>Ofertar</button>'+
-                        '</div>'+
-                        '<div class=product_overlay>'+
-                            '<h2>Ofertar</h2>'+
-                            '<i class=fa fa-check></i>'+
-                        '</div>'+
-        			  '</div>'
-        			);
-        	});
-        };
+	function servicioSeleccionado(id,name){
+		console.info(id);
+		//limpiar
+		$('#boton').empty();
+		$('#row').empty();
+		
+		//impimir sericio
+		apiServicios.getServicioById(id,"no me borres",imprimirServicio);
+	}
 	
+	function imprimirServicio(servicio){
+		console.info(servicio.id);
+		var seleccion = $("#boton");
+		 $("#container").append( "<p>.</p><div class=col-md-12>"+
+			 "<h2>"+servicio.nombre+"</h2>"+
+			"<div class=jumbotron>"+
+				"<h2>"+
+					"Descripcion:"+
+				"</h2>"+
+				"<div>"+servicio.descripcion+"</div>"+
+				"<p>"+
+					"<a class='btn btn-primary btn-large' href='#'>Ofertar Servicio</a>"+
+				"</p>"+
+			"</div>"+
+			"<div class=card>"+
+				"<h5 class=card-header>"+
+					"Comentarios"+
+				"</h5>"+
+				"<div class=card-body>"+
+					"<p class=card-text>"+
+						"ACA TOCA TRAER Y PONER LOS COMENTARIOS "+
+					"</p>"+
+				"</div>"+
+				"<div class=card-footer>"+
+					"ACA TOCA TRAER Y MOTRAR LAS VALORACIONES"+
+				"</div>"+
+			"</div>"+
+		"</div> <p>.</p>");
+	}
+
 	return {
-	    setUserLogged : setUserLogged,
-	    printUserLogged : printUserLogged,
-	    getServicios: getServicios,
+		setUserLogged: setUserLogged,
+		printUserLogged: printUserLogged,
+		getServicios: getServicios,
 		salvar: salvar,
-		salvarServicio:salvarServicio,
-		validarCuenta:validarCuenta,
-		inicio:inicio,
-		getServiciosByVendedor:getServiciosByVendedor,
-		eliminarServicio:eliminarServicio,
-		actualizarServicio:actualizarServicio,
-		actualizarServicioSeleccionado:actualizarServicioSeleccionado
+		salvarServicio: salvarServicio,
+		validarCuenta: validarCuenta,
+		inicio: inicio,
+		getServiciosByVendedor: getServiciosByVendedor,
+		eliminarServicio: eliminarServicio,
+		actualizarServicio: actualizarServicio,
+		actualizarServicioSeleccionado: actualizarServicioSeleccionado,
+		servicioSeleccionado:servicioSeleccionado
 
 	}
 

@@ -4,14 +4,14 @@ apiUsuario = (function() {
 
 
 	 function getServiciosByVendedor(id, callback) {//
-        $.getJSON("http://localhost:8080/servicios/" + id, function (data) {
+        $.getJSON("servicios/" + id, function (data) {
             callback(data);
         });
     }
 
 	function getUsuarioByNombre(name, callback) {//
 	    console.log(name);
-        $.getJSON("http://localhost:8080/usuarios/"+name, function (data) {
+        $.getJSON("usuarios/"+name, function (data) {
             callback(data);
         });
     }

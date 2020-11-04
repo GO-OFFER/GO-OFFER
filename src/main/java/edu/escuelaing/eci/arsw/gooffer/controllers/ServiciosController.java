@@ -1,6 +1,7 @@
 package edu.escuelaing.eci.arsw.gooffer.controllers;
 import edu.escuelaing.eci.arsw.gooffer.model.*;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 ///import edu.escuelaing.eci.arsw.gooffer.services.ServiciosServices;
@@ -57,6 +58,17 @@ public class ServiciosController {
             return new ResponseEntity<>("Error 404",HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(servicios, HttpStatus.ACCEPTED);
+    }
+	@RequestMapping(value="/{id}/{name}",method = RequestMethod.GET)
+	public  ResponseEntity<?>  findServiciosById(@PathVariable int id,@PathVariable String name) {
+        Optional<Servicio> servicio = null;
+        try {
+            servicio = serviciosService.findServiciosByIdAndName(id);
+        } catch (Exception ex) {
+        	Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error 404",HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(servicio, HttpStatus.ACCEPTED);
     }
 	 @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	    public ResponseEntity<?> deleteFunction(@PathVariable int id) {

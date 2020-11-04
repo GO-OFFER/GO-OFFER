@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ServiciosServices {
@@ -40,6 +41,9 @@ public class ServiciosServices {
 	public void update(Servicio servi) {
 		servicio.update(servi);
 		
+	}
+	public Optional<Servicio> findServiciosByIdAndName(int id) {
+		return servicio.findServiciosByIdAndName(id);
 	}
 
 }
