@@ -1,5 +1,5 @@
 apiServicios = (function() {
-  	 //var url = "http://localhost:8080/servicios"
+  	 // var url = "http://localhost:8080/servicios"
    	var url = "https://go-offer.herokuapp.com/servicios/"
     function getServiciosByVendedor(id, callback) {//
         $.getJSON("servicios/" + id, function (data) {
@@ -46,7 +46,35 @@ apiServicios = (function() {
 		});
 
 	}
-	
+	function crearComentario(map) {
+		var fun = JSON.stringify(map);
+		const promise = new Promise((resolve, reject) => {
+			$.ajax({
+				url: "comentarios/comentarioNuevo",
+				type: 'POST',
+				data: fun,
+				contentType: "application/json"
+			}).done(function() {
+				Swal.fire({
+					position: 'top-end',
+					icon: 'success',
+					title: 'Registro de comentario exitoso',
+					showConfirmButton: false,
+					timer: 1500
+				})
+				resolve('SUCCESS');
+
+			}).fail(function(msg) {
+				reject('FAIL');
+			});
+		});
+
+	}
+	function getComentariosById(id, callback) {//
+        $.getJSON("comentarios/" + id, function (data) {
+            callback(data);
+        });
+    }
 	
 	function eliminarServicio(id){
         ///var fun = JSON.stringify(funcion);
@@ -107,7 +135,9 @@ apiServicios = (function() {
 		crearServicio:crearServicio,
 		eliminarServicio:eliminarServicio,
 		getServiciosByVendedor:getServiciosByVendedor,
-		actualizarServicioSeleccionado:actualizarServicioSeleccionado
+		actualizarServicioSeleccionado:actualizarServicioSeleccionado,
+		crearComentario:crearComentario,
+		getComentariosById:getComentariosById
 	}
 
 })();

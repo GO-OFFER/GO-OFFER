@@ -1,7 +1,7 @@
 //var api = apiServicios; 
 app = (function() {
 
-	var idServicio;
+	var idServicio = 0;
 	var nombreUsuario;
 	var idLogg = 0;
 	var map;
@@ -224,6 +224,7 @@ app = (function() {
 	}
 	
 	function imprimirServicio(servicio){
+		idServicio=servicio.id;
 		console.info(servicio.id);
 		var seleccion = $("#boton");
 		 $("#container").append( "<p>.</p><div class=col-md-12>"+
@@ -242,15 +243,67 @@ app = (function() {
 					"Comentarios"+
 				"</h5>"+
 				"<div class=card-body>"+
-					"<p class=card-text>"+
-						"ACA TOCA TRAER Y PONER LOS COMENTARIOS "+
-					"</p>"+
+					"<button type='button' class='btn btn-primary' onclick='app.mapComentarios()'>mostrar comentarios</button>"+
 				"</div>"+
 				"<div class=card-footer>"+
-					"ACA TOCA TRAER Y MOTRAR LAS VALORACIONES"+
+					"<textarea id='nuevoComentario' rows='4' cols='50' name='escribe tu comentario' form='usrform' placeholder='escribe tu comentario'></textarea>"+
+					"<button type='button' class='btn btn-primary' onclick='app.insertarComentario(nuevoComentario.value)'>agregar</button>"+
 				"</div>"+
 			"</div>"+
 		"</div> <p>.</p>");
+	}
+	function mapComentarios(){
+		apiServicios.getComentariosById(idServicio,mapComentariosById);
+	}
+	function mapComentariosById(comentarios){
+		console.info(comentarios);
+		// comentarios = _map(comentarios)
+		if(comentarios.lenght>1){
+		comentarios.map(function(comentario) {
+			//console.info(comentario);
+			$('#container')
+				.append(
+					'<tr><td>'
+					+ comentario.idusuario + '</td><td>'
+					+ comentario.comentario + '</td><td>'
+					+ comentario.fecha + '</td>' + '</tr>'
+				);
+		});
+	}else{
+		$('#container')
+				.append(
+					'<tr><td>'
+					+ comentarios.idusuario + '</td><td>'
+					+ comentarios.comentario + '</td><td>'
+					+ comentarios.fecha + '</td>' + '</tr>'
+				);
+	}
+		
+	}
+	function insertarComentario(nuevoComentario){
+		
+		if(idLogg==0){
+			apiUsuario.getUsuarioByNombre(localStorage.getItem("selectedUser"), mapUsuario);
+		}else{
+		var f = new Date();
+		var date = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
+		console.info(idServicio);
+		console.info(idLogg);
+		console.info(date);
+		console.info(nuevoComentario);
+		var map = {
+				"idservicio": idServicio, ////LEER///////// parametro 1 es ID del vendedor (por ahora esta quemado como 1, pero hay que buscar pasar el id del loggeado pa que traiga los servicios del loggeado)
+				"idusuario": idLogg,
+				"creationdate": date,
+				"comentario": nuevoComentario
+		};
+	
+		apiServicios.crearComentario(map);
+		}
+		
+	}
+	function mapUsuario(user){
+		idLogg =user.id;
 	}
 
 	return {
@@ -265,7 +318,10 @@ app = (function() {
 		eliminarServicio: eliminarServicio,
 		actualizarServicio: actualizarServicio,
 		actualizarServicioSeleccionado: actualizarServicioSeleccionado,
-		servicioSeleccionado:servicioSeleccionado
+		servicioSeleccionado:servicioSeleccionado,
+		insertarComentario:insertarComentario,
+		mapComentariosById:mapComentariosById,
+		mapComentarios:mapComentarios
 
 	}
 

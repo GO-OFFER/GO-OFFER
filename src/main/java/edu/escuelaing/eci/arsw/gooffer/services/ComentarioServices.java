@@ -1,6 +1,7 @@
 package edu.escuelaing.eci.arsw.gooffer.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import edu.escuelaing.eci.arsw.gooffer.model.Compra;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +20,8 @@ public class ComentarioServices {
     }
 	public void saveComentario(Comentario c){
 		comentarioRepositoryImpl.saveComentario(c);
+	}
+	public Optional<Comentario> findAllComentariosById(int id) {
+        return comentarioRepositoryImpl.findAllComentariosById(id);
 	}
 }
