@@ -242,7 +242,7 @@ app = (function() {
 				"<h5 class=card-header>"+
 					"Comentarios"+
 				"</h5>"+
-				"<div class=card-body>"+
+				"<div class=card-body id='buscar'>"+
 					"<button type='button' class='btn btn-primary' onclick='app.mapComentarios()'>mostrar comentarios</button>"+
 				"</div>"+
 				"<div class=card-footer>"+
@@ -256,28 +256,50 @@ app = (function() {
 		apiServicios.getComentariosById(idServicio,mapComentariosById);
 	}
 	function mapComentariosById(comentarios){
+		
 		console.info(comentarios);
+		var flag= $("#tabla1");
+		// var table="<table><tr><td id='table1'style='width: 100px; color: red;'>comentarios</td>";
+		if(flag!=null){
+			$("#titulo").remove();
+			$("#tabla1").remove();
+		}
+		var table =" <h2 id='titulo'>comentarios:</h2>"+
+		"<table class='table' id='tabla1'>"+
+			"<thead class='thead-dark'>"+
+				"<tr>"+
+					"<th scope='col'>ID Usuario</th>"+
+					"<th scope='col'>comentario</th>"+
+					"<th scope='col'>fecha</th>"+
+				"</tr>";
 		// comentarios = _map(comentarios)
 		if(comentarios.lenght>1){
 		comentarios.map(function(comentario) {
 			//console.info(comentario);
-			$('#container')
-				.append(
+			
+			table+=
 					'<tr><td>'
 					+ comentario.idusuario + '</td><td>'
 					+ comentario.comentario + '</td><td>'
-					+ comentario.fecha + '</td>' + '</tr>'
-				);
+					+ comentario.fecha + '</td>' + '</tr>';
+				
 		});
+		table+="</thead>"+"</table>";
+		$("#buscar").append(table);
+		
+		
 	}else{
-		$('#container')
-				.append(
+				table+=
 					'<tr><td>'
 					+ comentarios.idusuario + '</td><td>'
 					+ comentarios.comentario + '</td><td>'
 					+ comentarios.fecha + '</td>' + '</tr>'
-				);
+				;
+				table+="</thead>"+"</table>";
+				$("#buscar").append(table);
+				
 	}
+	
 		
 	}
 	function insertarComentario(nuevoComentario){
