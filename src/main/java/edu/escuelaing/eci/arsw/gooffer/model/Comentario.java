@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Comentario {
 	/* falta comentario por conexion */
 	
-	@Column(name = "id")
+	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 	
