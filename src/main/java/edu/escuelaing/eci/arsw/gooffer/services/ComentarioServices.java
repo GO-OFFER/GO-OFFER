@@ -3,7 +3,6 @@ package edu.escuelaing.eci.arsw.gooffer.services;
 import java.util.List;
 import java.util.Optional;
 
-import edu.escuelaing.eci.arsw.gooffer.model.Compra;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

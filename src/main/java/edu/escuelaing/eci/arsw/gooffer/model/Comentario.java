@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,6 +14,9 @@ import javax.persistence.Table;
 public class Comentario {
 	/* falta comentario por conexion */
 	
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 	
 	@Id
     private int idservicio;
@@ -24,15 +29,24 @@ public class Comentario {
 	
 	@Column(name = "comentario")
     private String comentario;
-
-    public Comentario(int idservicio, int idusuario, Date fecha, String comentario) {
+	
+    public Comentario(int idservicio, int idusuario, Date fecha, String comentario,int id) {
         this.idservicio= idservicio;
         this.idusuario = idusuario;
         this.comentario = comentario;
         this.fecha = fecha;
+        this.id=id;
     }
     public Comentario() {
     	
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getIdservicio() {

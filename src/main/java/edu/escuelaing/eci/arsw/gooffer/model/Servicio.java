@@ -18,6 +18,9 @@ public class Servicio {
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 	
+	@Id
+    private int idservicio;
+	
 	@Column(name = "idusuario")
     private int idusuario; //vendedor
 	
