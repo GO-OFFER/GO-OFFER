@@ -113,6 +113,7 @@ class GoofferApplicationTests {
 		assertEquals("test03", (Usuario.getNombre()));
 
 	}*/
+	/*
 	@Test
 	public void DeberiaInsertarServicio() {
 		Servicio Servicio = new Servicio();

@@ -1,7 +1,8 @@
 package edu.escuelaing.eci.arsw.gooffer.model;
 
 import java.util.Date;
-
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,9 +14,14 @@ public class Comentario {
 	/* falta comentario por conexion */
 	
 	
-	@Id
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
+    @Column(name="idservicio")
     private int idservicio;
-	
 	@Column(name = "idusuario")
     private int idusuario;
 	
@@ -25,11 +31,12 @@ public class Comentario {
 	@Column(name = "comentario")
     private String comentario;
 
-    public Comentario(int idservicio, int idusuario, Date fecha, String comentario) {
+    public Comentario(int idservicio, int idusuario, Date fecha, String comentario, int id) {
         this.idservicio= idservicio;
         this.idusuario = idusuario;
         this.comentario = comentario;
         this.fecha = fecha;
+        this.id = id;
     }
     public Comentario() {
     	
@@ -65,5 +72,12 @@ public class Comentario {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
