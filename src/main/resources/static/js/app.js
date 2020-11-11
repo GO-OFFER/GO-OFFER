@@ -55,9 +55,7 @@ app = (function() {
 		var f = new Date();
 		var date = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
 		if(user==null){
-	
 			apiUsuario.getUsuarioByNombre(localStorage.getItem("selectedUser"), salvarServicio);
-
 		}else{
 			map = {
 				"idVendedor": user.id, ////LEER///////// parametro 1 es ID del vendedor (por ahora esta quemado como 1, pero hay que buscar pasar el id del loggeado pa que traiga los servicios del loggeado)
@@ -68,6 +66,8 @@ app = (function() {
 			console.info(user.id+ "esto aqui :()");
 			console.info(map+" yo tambien ");
 			$.getScript("js/servicios.js", function() {apiServicios.crearServicio(map,map.nombre); });
+			stomp.connectAndSubscribeAddServicio(map);
+			;
 		}
 	}
 	

@@ -11,6 +11,7 @@ apiServicios = (function() {
 			callback(data);
         });
     }
+
 	function getServicios(callback) {//
 	    console.log(url);
 	    $.getJSON(url,(data)=>{
