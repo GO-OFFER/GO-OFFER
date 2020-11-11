@@ -22,7 +22,7 @@ stomp =( function (){
         stompClient.connect({}, function (frame) {
             console.log('Connected: ' + frame);
             //stompClient.subscribe('/topic/servicios.' + fun.name, function (message) {
-            stompClient.subscribe('/topic/servicios', function (message) {
+            stompClient.subscribe('/topic/services', function (message) {
                alert("evento recibido");
                var theObject = JSON.parse(message.body);
                console.log(theObject);
@@ -31,12 +31,15 @@ stomp =( function (){
     };
     var addService = function (fun) {
         init();
-        var service = new Service(fun.idVendedor,fun.nombre,fun.descripcion,fun.creationdate)
+      //  var fun = JSON.stringify(map);
+     //   var service = new Service(fun.idVendedor,fun.nombre,fun.descripcion,fun.creationdate)
         console.log("Publishing....");
-        console.log(service);
+        console.log(fun);
         console.log(stompClient);
         stompClient.connect({}, function (frame) {
-            stompClient.send("/app/services."+fun.nombre, {}, JSON.stringify(service));
+            //stompClient.send("/app/services."+fun.nombre, {}, JSON.stringify(service));
+           // stompClient.send("/app/services", {}, JSON.stringify(service));
+            stompClient.send("/app/services."+fun.nombre, {}, JSON.stringify(fun));
         });
 
     };
