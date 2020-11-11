@@ -66,7 +66,7 @@ app = (function() {
 			console.info(user.id+ "esto aqui :()");
 			console.info(map+" yo tambien ");
 			$.getScript("js/servicios.js", function() {apiServicios.crearServicio(map,map.nombre); });
-			stomp.connectAndSubscribeAddServicio(map);
+			stomp.addService(map);
 			;
 		}
 	}
@@ -107,6 +107,7 @@ app = (function() {
 		//apiUsuario.getServicios(table);
 		printUserLogged();
 		apiServicios.getServicios(cards);
+		stomp.connectAndSubscribeServicio();
 	}
 	function getServiciosByVendedor() {
 
