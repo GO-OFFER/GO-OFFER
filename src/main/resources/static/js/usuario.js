@@ -34,7 +34,7 @@ apiUsuario = (function() {
 		var fun = JSON.stringify(usuario);
 		const promise = new Promise((resolve, reject) => {
 			$.ajax({
-				url: "https://go-offer.herokuapp.com/usuarios/" + name, ///https://go-offer.herokuapp.com-----http://localhost:8080
+				url: "usuarios/" + name, ///https://go-offer.herokuapp.com-----http://localhost:8080
 				type: 'POST',
 				data: fun,
 				contentType: "application/json"

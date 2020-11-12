@@ -42,6 +42,7 @@ public class ComentarioController {
         Optional<Comentario> comentarios = null;
         try {
             comentarios = comentarioServices.findAllComentariosById(id);
+            System.out.println(comentarios);
         } catch (Exception ex) {
         	Logger.getLogger(CompraController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error 404",HttpStatus.NOT_FOUND);

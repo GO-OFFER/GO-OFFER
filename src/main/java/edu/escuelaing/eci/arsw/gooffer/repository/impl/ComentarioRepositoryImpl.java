@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +27,20 @@ public class ComentarioRepositoryImpl{
 		  comentario.setFecha(Date.valueOf(creationDate));
         comentarioRepository.save(comentario);
     }
-	public Optional<Comentario> findAllComentariosById(int id) {
-		return  comentarioRepository.findById(id);
+	public Optional<Comentario>  findAllComentariosById(int id) {
+		//Optional<Comentario> res =
+		List<Comentario> res= new ArrayList<Comentario>();
+		for (Comentario c: comentarioRepository.findAll()) {
+			if(c.getIdservicio()==id) {
+				res.add(c);
+				
+			}
+		}
+		
+		Optional<Comentario> re= res.stream().findAny();
+		
+		return  re;
+		
+		
 	}
 }
