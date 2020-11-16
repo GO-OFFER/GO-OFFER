@@ -71,7 +71,7 @@ chat = (function(){
     function ingresar(){
         usuario = localStorage.getItem("selectedUser")
         //usuario = $("#nombreUsuario").val();
-        room = $("#room").val();
+        //room = $("#room").val();
         $("#logear").css({
               display: 'none',
               visibility: 'hidden'
