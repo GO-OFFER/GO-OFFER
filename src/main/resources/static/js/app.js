@@ -76,6 +76,11 @@ app = (function() {
 		console.log(nickname);
 		localStorage.setItem("selectedUser", nickname);
 	}
+
+	function setRoomName(name) {
+    		console.log(name);
+    		localStorage.setItem("selectedRoom", name);
+    	}
 	
 	function printUserLogged() {
 		if (localStorage.getItem("selectedUser") !== undefined) {
@@ -226,7 +231,9 @@ app = (function() {
 	
 	function imprimirServicio(servicio){
 		idServicio=servicio.id;
-		console.info(servicio.id);
+		//console.info(servicio.id);
+		setRoomName(idServicio);
+		console.info(localStorage.getItem("selectedRoom"));
 		var seleccion = $("#boton");
 		 $("#container").append( "<p>.</p><div class=col-md-12>"+
 			 "<h2>"+servicio.nombre+"</h2>"+
@@ -236,7 +243,7 @@ app = (function() {
 				"</h2>"+
 				"<div>"+servicio.descripcion+"</div>"+
 				"<p>"+
-					"<a class='btn btn-primary btn-large' href='#'>Ofertar Servicio</a>"+
+					"<a class='btn btn-primary btn-large' href='/chat.html'>Ofertar Servicio</a>"+
 				"</p>"+
 			"</div>"+
 			"<div class=card>"+
