@@ -114,6 +114,7 @@ app = (function() {
 		apiServicios.getServicios(cards);
 		stomp.connectAndSubscribeServicio();
 	}
+
 	function getServiciosByVendedor() {
 
 		apiUsuario.getUsuarioByNombre(localStorage.getItem("selectedUser"), getUsuarioByNombre);
