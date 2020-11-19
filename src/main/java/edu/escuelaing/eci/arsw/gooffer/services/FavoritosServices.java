@@ -21,4 +21,16 @@ public class FavoritosServices {
 	 public List<Favorito> findAllFavoritos(){
 	        return favorito.findAllFavoritos();
 	    }
+
+
+
+	public void saveFavorito(Favorito fav) {
+		favorito.save(fav);
+	}
+
+
+
+	public List<Favorito> findFavoritosById(int id) {
+		return favorito.FindById(id);
+	}
 }

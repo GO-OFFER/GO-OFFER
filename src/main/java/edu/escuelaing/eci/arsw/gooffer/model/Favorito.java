@@ -19,7 +19,7 @@ import java.util.Date;
 public class Favorito {
 
 	@Id
-	@Column(name = "idServicio")
+	@Column(name = "idservicio")
     private int idservicio;
 	
 	@Column(name = "idusuario")
@@ -37,25 +37,30 @@ public class Favorito {
     }
     */
 	
-    public Favorito() {
+    public Favorito(int idSer, int idUse) {
+    	this.idservicio=idSer;
+    	this.idusuario=idUse;
+    }
+    
+    public Favorito () {
     	
     }
 
    
 
-    public int getIdServicio() {
+    public int getIdservicio() {
         return idservicio;
     }
 
-    public void setIdServicio(int idServicio) {
+    public void setIdservicio(int idServicio) {
         this.idservicio = idServicio;
     }
 
-    public int getIdComprador() {
+    public int getIdusuario() {
         return idusuario;
     }
 
-    public void setIdComprador(int idComprador) {
+    public void setIdusuario(int idComprador) {
         this.idusuario = idComprador;
     }
 

@@ -1,6 +1,7 @@
 //var api = apiServicios; 
 app = (function() {
 
+	var fav=null;
 	var idServicio = 0;
 	var nombreUsuario;
 	var idLogg = 0;
@@ -245,6 +246,7 @@ app = (function() {
 				"<div>"+servicio.descripcion+"</div>"+
 				"<p>"+
 					"<a class='btn btn-primary btn-large' href='/chat.html'>Ofertar Servicio</a>"+
+					"<a class='btn btn-primary btn-large' onclick='app.saveFavorito()'>Añadir a mis favoritos</a>"+
 				"</p>"+
 			"</div>"+
 			"<div class=card>"+
@@ -261,6 +263,73 @@ app = (function() {
 			"</div>"+
 		"</div> <p>.</p>");
 	}
+	function saveFavorito(){
+		if(idLogg==0){
+			apiUsuario.getUsuarioByNombre(localStorage.getItem("selectedUser"), mapUsuario);
+		}else{
+			console.info(idServicio);
+			console.info(idLogg);
+			var map = {
+					"idservicio": idServicio, ////LEER///////// parametro 1 es ID del vendedor (por ahora esta quemado como 1, pero hay que buscar pasar el id del loggeado pa que traiga los servicios del loggeado)
+					"idusuario": idLogg
+					};
+			apiServicios.saveFavorito(map);		
+		}
+		
+	}
+	function mapFavoritos(){
+		
+		if(idLogg==0){
+			$.getScript("js/usuario.js", function() { apiUsuario.getUsuarioByNombre(localStorage.getItem("selectedUser"), mapUsuario); });
+		}else{
+			$.getScript("js/servicios.js", function() { apiServicios.getFavoritosById(idLogg,mapFavoritosById);});
+		}
+	}
+	function mapFavoritosById(favoritos){
+		
+		console.info(favoritos);
+		favoritos.map(function(fav) {
+			apiServicios.getServicioById(fav.idservicio,"como fua", tablafav);
+
+				});
+		
+		
+	}
+	
+	
+				
+	function tablafav(servicio){
+		
+	var table =" <table class='table' id='tabla2'>";
+		if(servicio.length>1){
+		servicio.map(function(servicio1) {
+			
+			
+		table+=
+					'<tr><td>'
+					+ servicio1.id + '</td><td>'
+					+ servicio1.nombre + '</td><td>'
+					+ servicio1.descripcion + '</td>' + '</tr>';
+				
+		});
+		table+="</table>";
+		
+		}else{
+				table+=
+					'<tr><td>'
+					+ servicio.id + '</td><td>'
+					+ servicio.nombre + '</td><td>'
+					+ servicio.descripcion + '</td>' + '</tr>';
+				
+		table+="</table>";
+				
+	}
+
+		$("#tablafav").append(table);	
+	
+	
+	}
+	
 	function mapComentarios(){
 		apiServicios.getComentariosById(idServicio,mapComentariosById);
 	}
@@ -283,7 +352,7 @@ app = (function() {
 				"</tr>";
 		// comentarios = _map(comentarios)
 		//console.info(comentarios);
-		if(comentarios.lenght>1){
+		if(comentarios.length>1){
 		comentarios.map(function(comentario) {
 			
 			
@@ -357,57 +426,31 @@ app = (function() {
         "</div>");
 	}
 	
-	function compras(){
-		
-	}
 	
 	function favoritos(){
 	
-		$("#container").append(
+		$("#abc").append(
+			"<p>.<p>"+
 			"<div class=container-fluid>"+
 	"<div class=row>"+
 		"<div class='col-md-12'>"+
 			"<div class=list-group>"+
-				 "<a class=list-group-item list-group-item-action active>Favoritos del dia</a>"+
-				"<div class=list-group-item>"+
-					"List header"+
+				 "<a class=list-group-item list-group-item-action active>Favoritos</a>"+
+				
+				"<div class=list-group-item id=tablafav>"+
+					"<button type='button' class='btn btn-primary' onclick='app.mapFavoritos()'>Mostrar favoritos </button>"+
+				"<table class='table' id='tabla2'>"+
+					"<thead class='thead-dark'>"+
+				"<tr>"+
+					"<th scope='col'>ID </th>"+
+					"<th scope='col'>Nombre</th>"+
+					"<th scope='col'>Descripcion</th>"+
+				"</tr>"+
 				"</div>"+
-				"<div class=list-group-item>"+
-					"<h4 class=list-group-item-heading>"+
-						"List group item heading"+
-					"</h4>"+
-					"<p class=list-group-item-text>"+
-						"..."+
-					"</p>"+ 
+			
 				"</div>"+
-				"<div class=list-group-item justify-content-between>"+
-					"Help <span class=badge badge-secondary badge-pill>14</span>"+
-				"</div> <a href='#' class=list-group-item list-group-item-action active justify-content-between>Home <span class=badge badge-light badge-pill>14</span></a>"+
 			"</div>"+
-			"<div class=jumbotron>"+
-				"<h2>"+
-					"Bienvenido"+
-				"</h2>"+
-				"<p>"+
-					"Estos son los articulos que te han gustado hoy! Contratalos YA! c:"+
-				"</p>"+
-			"</div>"+
-			"<div class=media>"+
-				"<img class=mr-3 alt='Bootstrap Media Preview' src='https://www.layoutit.com/img/sports-q-c-64-64-8.jpg' />"+
-				"<div class=media-body>"+
-					"<h5 class=mt-0>"+
-						"Vendedor"+
-					"</h5>Hola el servicio por el que preguntaste lo haría por un valor de $100 y podria hacerlo el sabado en la mañana..."+
-					"<div class=media mt-3>"+
-						 "<a class=pr-3 href='#'><img alt='Bootstrap Media Another Preview' src='https://www.layoutit.com/img/sports-q-c-64-64-2.jpg' /></a>"+
-						"<div class=media-body>"+
-							"<h5 class=mt-0>"+
-								"Comprador"+
-							"</h5>Me parece perfecto, mi direccion es 2600 14th St NW, Washington, DC 20009... te espero"+
-						"</div>"+
-					"</div>"+
-				"</div>"+
-			"</div><span class=badge badge-info></span>"+
+			
 		"</div>"+
 	"</div>"+
 "</div> <p>.<p>");
@@ -431,8 +474,9 @@ app = (function() {
 		mapComentariosById:mapComentariosById,
 		mapComentarios:mapComentarios,
 		perfiles:perfiles,
-		compras:compras,
-		favoritos:favoritos
+		favoritos:favoritos,
+		saveFavorito: saveFavorito,
+		mapFavoritos:mapFavoritos
 
 	}
 

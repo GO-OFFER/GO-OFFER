@@ -12,6 +12,12 @@ apiServicios = (function() {
         });
     }
 
+	function getFavoritosById(id,callback){
+		 $.getJSON("favoritos/" + id , function (data) {
+			callback(data);
+        });
+	}
+	
 	function getServicios(callback) {//
 	    console.log(url);
 	    $.getJSON(url,(data)=>{
@@ -36,6 +42,31 @@ apiServicios = (function() {
 					position: 'top-end',
 					icon: 'success',
 					title: 'Registro exitoso',
+					showConfirmButton: false,
+					timer: 1500
+				})
+				resolve('SUCCESS');
+
+			}).fail(function(msg) {
+				reject('FAIL');
+			});
+		});
+
+	}
+	
+	function saveFavorito(map) {
+		var fun = JSON.stringify(map);
+		const promise = new Promise((resolve, reject) => {
+			$.ajax({
+				url: "favoritos/nuevoFavorito",
+				type: 'POST',
+				data: fun,
+				contentType: "application/json"
+			}).done(function() {
+				Swal.fire({
+					position: 'top-end',
+					icon: 'success',
+					title: 'Nuevo favorito agregado',
 					showConfirmButton: false,
 					timer: 1500
 				})
@@ -138,7 +169,9 @@ apiServicios = (function() {
 		getServiciosByVendedor:getServiciosByVendedor,
 		actualizarServicioSeleccionado:actualizarServicioSeleccionado,
 		crearComentario:crearComentario,
-		getComentariosById:getComentariosById
+		getComentariosById:getComentariosById,
+		saveFavorito:saveFavorito,
+		getFavoritosById:getFavoritosById
 	}
 
 })();
