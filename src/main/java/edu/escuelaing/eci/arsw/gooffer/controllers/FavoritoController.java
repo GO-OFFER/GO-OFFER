@@ -46,6 +46,12 @@ public class FavoritoController {
 		        	System.out.println("LLEGUE BIEN GRACIAS POR PREGUNTAR  FAVORITOOOOOOOOOOOOOO");
 		        	System.out.println(fav.getIdservicio()+"  seeeeer -------- uuuuuuusauario"+ fav.getIdusuario());
 		        	favoritosServices.saveFavorito(fav);
+		        	if(favoritosServices.hayFavoritosCache(fav.getIdusuario())) {
+		        		favoritosServices.postFavoritoCache(fav);
+		        	}else {
+		        		List<Favorito> favortios = favoritosServices.findFavoritosById(fav.getIdusuario());
+		        		favoritosServices.postFavoritosCache(fav.getIdusuario(),favortios);
+		        	}
 		            return new ResponseEntity<>(HttpStatus.CREATED);
 		        } catch (Exception ex) {
 		            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
@@ -57,45 +63,18 @@ public class FavoritoController {
 			public  ResponseEntity<?>  findServiciosById(@PathVariable int id) {
 		        List<Favorito> favortios = null;
 		        try {
-		        	favortios = favoritosServices.findFavoritosById(id);
+		        	if(favoritosServices.hayFavoritosCache(id)) {
+		        		favortios=favoritosServices.getFavoritosCache(id); /// trae del cache (si hay) :3
+		        		System.out.println("PERRRRRROOOOO TRAJE DE CACHEEEEEEEEEEEEE fav");
+		        	}else {
+		        		favortios = favoritosServices.findFavoritosById(id);
+		        		favoritosServices.postFavoritosCache(id,favortios);
+		            }
+		        	
 		        } catch (Exception ex) {
 		        	Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
 		            return new ResponseEntity<>("Error 404",HttpStatus.NOT_FOUND);
 		        }
 		        return new ResponseEntity<>(favortios, HttpStatus.ACCEPTED);
 		    }
-//		@RequestMapping(value = "/saveFavoritoCache", method = RequestMethod.POST)	
-//	    public ResponseEntity<?> postUsernameCache(@RequestBody Favorito favorito){
-//	        try {
-//	            user.postUsernameCache(favorito);
-//	            return new ResponseEntity<>(HttpStatus.CREATED);
-//	        } catch (Exception ex) {
-//	            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-//	            return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);            
-//	        }        
-//
-//	    }
-//	    
-//	    @RequestMapping(value = "/deleteFavoritoCache/{user}", method = RequestMethod.DELETE)	
-//	    public ResponseEntity<?> deleteUsernameCache(@PathVariable(name="user") String usuario){
-//	        try {
-//	            user.deleteUsernameCache(usuario);
-//	            return new ResponseEntity<>(HttpStatus.CREATED);
-//	        } catch (Exception ex) {
-//	            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-//	            return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);            
-//	        }        
-//
-//	    }
-//	    
-//	    @RequestMapping(value = "/existFavoritoname/{favorito}", method = RequestMethod.GET)	
-//	    public ResponseEntity<?> existUsername(@PathVariable(name="favorito") String favorito){
-//	        try {
-//	            return new ResponseEntity<>(favorito.existUsername(favorito), HttpStatus.CREATED);
-//	        } catch (Exception ex) {
-//	            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-//	            return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);            
-//	        }        
-//
-//	    }
 }

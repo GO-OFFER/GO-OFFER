@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import edu.escuelaing.eci.arsw.gooffer.cache.GoofferCache;
 import edu.escuelaing.eci.arsw.gooffer.model.Comentario;
 import edu.escuelaing.eci.arsw.gooffer.model.Favorito;
 import edu.escuelaing.eci.arsw.gooffer.model.Servicio;
@@ -17,6 +19,8 @@ public class FavoritoRepositoryImpl {
 	
 	@Autowired
 	FavoritoRepository favoritoRepository;
+	
+	
 	
 	public List<Favorito> findAllFavoritos() {
         return  favoritoRepository.findAll();

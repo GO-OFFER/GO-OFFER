@@ -28,7 +28,13 @@ public class ServiciosController {
 	public  ResponseEntity<?>  findAllServicios() {
         List<Servicio> servicios = null;
         try {
-            servicios = serviciosService.findAllServices();
+        	if(serviciosService.hayServiciosCache()) {
+        		servicios=serviciosService.getServiciosCache(); /// trae del cache (si hay) :3
+        		System.out.println("PERRRRRROOOOO TRAJE DE CACHEEEEEEEEEEEEE");
+        	}else {
+        		servicios = serviciosService.findAllServices(); ///trae de la base de datos
+        		serviciosService.postServiciosCache(servicios);
+            }
         } catch (Exception ex) {
         	Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error 404",HttpStatus.NOT_FOUND);
@@ -39,8 +45,15 @@ public class ServiciosController {
 	@RequestMapping(value="/{name}",method = RequestMethod.POST)
     public ResponseEntity<?> addUser(@RequestBody Servicio servicio, @PathVariable String name){
         try {
-        	System.out.println(name+" LLEGUE BIEN GRACIAS POR PREGUNTAR  "+ servicio);
         	serviciosService.saveServicio(servicio);
+        	if(serviciosService.hayServiciosCache()) {
+        		System.out.println("PERRRRRROOOOO SI HAY CACHEE");
+        		serviciosService.postServicioCache(servicio);
+        	}else {
+        		serviciosService.postServiciosCache(serviciosService.findAllServices());
+            }
+        	System.out.println(name+" LLEGUE BIEN GRACIAS POR PREGUNTAR  "+ servicio);
+        	
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception ex) {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
@@ -75,6 +88,10 @@ public class ServiciosController {
 	        
 	        try {
 	        	serviciosService.deleteServicio(id);
+	        	if(serviciosService.existServicioCache(id)) {
+	        		System.out.println("PERRRRRROOOOO SI HAY CACHEE");
+	        		serviciosService.deleteServicioCache(id);
+	        	}
 	            return new ResponseEntity<>(HttpStatus.OK);
 	        } catch (Exception ex) {
 	            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
@@ -85,6 +102,12 @@ public class ServiciosController {
 	    public ResponseEntity<?> putResourceCinemaByName(@PathVariable int id,@RequestBody Servicio servi) {
 	        try {
 	        	serviciosService.update(servi);
+	        	if(serviciosService.existServicioCache(id)) {
+	        		System.out.println("PERRRRRROOOOO SI HAY CACHEE");
+	        		serviciosService.putServicioCache(servi);
+	        	}else {
+	        		serviciosService.postServiciosCache(serviciosService.findAllServices());
+	            }
 	        	return new ResponseEntity<>(HttpStatus.OK);
 	        } catch (Exception ex) {
 	        	Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
