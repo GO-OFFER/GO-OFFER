@@ -70,6 +70,8 @@
 
 </head>
 
+
+
 <script type="text/javascript">
 
 var mensaje;
@@ -126,7 +128,7 @@ function agregar(contenido){
 
 
 	//var contenido = $("#contenido").val();
-
+	
 	console.log(contenido.sender)
 	console.log(usuario)
 	console.log(contenido.sender==usuario)
@@ -178,103 +180,153 @@ $(function (){
 
 </script>
 
-<body style=background: #66999 url(/images/Fondo.jpg)
-center center cover no-repeatfixed;>
-dy id="home" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
-<!-- LOADER -->
-<div id="preloader">
-    <div class="loader">
-        <img src="images/loader.gif" alt="#" />
-    </div>
-</div>
-<!-- END LOADER -->
-<div class="wrapper">
-    <nav id="sidebar">
-        <div class="menu_section">
-            <ul>
-                <li><a href="loginprueba.html">GO-OFFER PROFILE</a></li>
-                <li><a href="index.html">Home GO-OFFER</a></li>
-                <li><a href="about.html">About GO-OFFER</a></li>
-                <li><a href="registro.html">JOIN NOW GO-OFFER</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div id="content">
-        <!-- Start header -->
-        <header class="top-header">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="logo_main">
-                            <a href="index.html"><img src="images/main_logo2.png" /></a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn"><img src="images/menu_icon.png"></button>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- End header -->
-<div class="jumbotron" style="text-align: center; height: 200px;">
-    <h1>Chat</h1>
-</div>
-<div id="container-super">
-</div>
-<div id="envios" class="input-group mb-3">
-    <input id="contenido" type="text" class="form-control"
-           placeholder="Escibe un mensaje" aria-label="Recipient's username"
-           aria-describedby="basic-addon2">
-    <div class="input-group-append">
-        <button id="enviar" class="btn btn-outline-secondary" type="button">Enviar</button>
-        <button id="conectar" class="btn btn-outline-secondary" type="button">conectar</button>
-    </div>
-</div>
-        <!-- Start Footer -->
-        <footer class="footer-box">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="full">
-                            <div class="heading_main text_align_center white_fonts margin-bottom_30">
-                                <h2>Contact us</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
+	<body style=background:url(/images/Fondo.jpg) center center
+		coverno-repeatfixed;>
 
-                    <div class="col-lg-3 col-md-6 col-sm-6 white_fonts">
-                        <div class="full footer_blog f_icon_1">
-                            <p>Address<br><small>Escuela Colombiana,<br>de Ingenieria<br>Julio Garavito</small></p>
-                        </div>
-                    </div>
+	
+		<!-- LOADER -->
+	
+	<div id="preloader">
+			<div class="loader">
+				<img src="images/loader.gif" alt="#" />
+			</div>
+		</div>
+		<!-- END LOADER -->
+		<div class="wrapper">
+			<nav id="sidebar">
+				<div class="menu_section">
+					<ul>
+						<li><a href="loginprueba.html">GO-OFFER PROFILE</a></li>
+						<li><a href="index.html">Home GO-OFFER</a></li>
+						<li><a href="about.html">About GO-OFFER</a></li>
+						<li><a href="registro.html">JOIN NOW GO-OFFER</a></li>
+					</ul>
+				</div>
+			</nav>
+			<div id="content">
+				<!-- Start header -->
+				<header class="top-header">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="logo_main">
+									<a href="index.html"><img src="images/main_logo2.png" /></a>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<button type="button" id="sidebarCollapse"
+									class="btn btn-info navbar-btn">
+									<img src="images/menu_icon.png">
+								</button>
+							</div>
+						</div>
+					</div>
+				</header>
+				<!-- End header -->
+				<div class="jumbotron" style="text-align: center; height: 200px;">
+					<h1>Chat</h1>
+				</div>
+				<div id="container-super"></div>
+				<div id="envios" class="input-group mb-3">
+					<input id="contenido" type="text" class="form-control"
+						placeholder="Escibe un mensaje" aria-label="Recipient's username"
+						aria-describedby="basic-addon2">
+					<div class="input-group-append">
+						<button id="enviar" class="btn btn-outline-secondary"
+							type="button">Enviar</button>
+						<button id="conectar" class="btn btn-outline-secondary"
+							type="button">conectar</button>
+					</div>
+				</div>
+			<p>
+				Califica este servicio<select id="calificacion"
+					name="calificacion">
+				
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					
 
-                    <div class="col-lg-3 col-md-6 col-sm-6 white_fonts">
-                        <div class="full footer_blog f_icon_2">
-                            <p>Phone<br><small>+57 315 383 0944<br>+57 310 492 7437<br>+57 322 891 3831<br>Horario de atencion:<br>00:00 a 23:59 24 X 7 online support</small></p>
-                        </div>
-                    </div>
+				</select>
+			</p>
+			<p>
+			<p>
+				<a type="button" class="btn btn-primary"
+					onclick="app.comprar()">calificar</a>
+					<p>
+			<p>
+				<a type="button" class="btn btn-primary"
+					onclick="app.comprar()">comprar</a>
+				<!-- Start Footer -->
+			
+			<footer class="footer-box">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="full">
+									<div
+										class="heading_main text_align_center white_fonts margin-bottom_30">
+										<h2>Contact us</h2>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
 
-                    <div class="col-lg-3 col-md-6 col-sm-6 white_fonts">
-                        <div class="full footer_blog f_icon_3">
-                            <p>Email<br><small>πkantes@πkanticos.com<br>24 X 7 online support</small></p>
-                        </div>
-                    </div>
+							<div class="col-lg-3 col-md-6 col-sm-6 white_fonts">
+								<div class="full footer_blog f_icon_1">
+									<p>
+										Address<br>
+										<small>Escuela Colombiana,<br>de Ingenieria<br>Julio
+											Garavito
+										</small>
+									</p>
+								</div>
+							</div>
 
-                    <div class="col-lg-3 col-md-6 col-sm-6 white_fonts">
-                        <div class="full footer_blog_last">
-                            <p>Social media</p>
-                            <p>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                            </ul>
-                            </p>
-                        </div>
+							<div class="col-lg-3 col-md-6 col-sm-6 white_fonts">
+								<div class="full footer_blog f_icon_2">
+									<p>
+										Phone<br>
+										<small>+57 315 383 0944<br>+57 310 492 7437<br>+57
+											322 891 3831<br>Horario de atencion:<br>00:00 a
+											23:59 24 X 7 online support
+										</small>
+									</p>
+								</div>
+							</div>
+
+							<div class="col-lg-3 col-md-6 col-sm-6 white_fonts">
+								<div class="full footer_blog f_icon_3">
+									<p>
+										Email<br>
+										<small>πkantes@πkanticos.com<br>24 X 7 online
+											support
+										</small>
+									</p>
+								</div>
+							</div>
+
+							<div class="col-lg-3 col-md-6 col-sm-6 white_fonts">
+								<div class="full footer_blog_last">
+									<p>Social media</p>
+									<p>
+									<ul>
+										<li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
+										<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+										<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+										<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+										<li><a href="#"><i class="fa fa-youtube"></i></a></li>
+									</ul>
+</p>
+</div>
                     </div>
 
                 </div>
@@ -306,6 +358,11 @@ dy id="home" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
     <script src="js/isotope.min.js"></script>
     <script src="js/images-loded.min.js"></script>
     <script src="js/custom.js"></script>
+    <script
+			src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"
+			integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg=="
+			crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- End Google Map -->
 </body>
 <script src="js/chat.js"></script>

@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import edu.escuelaing.eci.arsw.gooffer.model.Compra;
+import edu.escuelaing.eci.arsw.gooffer.model.Servicio;
 import edu.escuelaing.eci.arsw.gooffer.model.Usuario;
 import edu.escuelaing.eci.arsw.gooffer.services.CompraServices;
 
@@ -29,5 +30,18 @@ public class CompraController {
             return new ResponseEntity<>("Error 404",HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(compras, HttpStatus.ACCEPTED);
+    }
+	@RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<?> addUser(@RequestBody Compra compra){
+        try {
+        	System.out.println(" LLEGUE BIEN GRACIAS POR PREGUNTAR Compra "+ compra);
+        	compraServices.saveCompra(compra);
+        	
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);
+        }
+
     }
 }

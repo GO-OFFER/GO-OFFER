@@ -71,6 +71,28 @@ app = (function() {
 			;
 		}
 	}
+	function comprar() {
+		//console.info($("#usuario").val());
+		if(idLogg==0){
+			apiUsuario.getUsuarioByNombre(localStorage.getItem("selectedUser"), mapUsuario);
+		}else{
+		var f = new Date();
+		var date =  f.getFullYear()+ "-" + (f.getMonth() + 1) + "-" + f.getDate() ;
+		var calificacion =$("#calificacion").val();
+		console.info(idServicio);
+		console.info(idLogg);
+		console.info(date);
+		console.info(calificacion);
+		var map = {
+				"idservicio": idServicio, ////LEER///////// parametro 1 es ID del vendedor (por ahora esta quemado como 1, pero hay que buscar pasar el id del loggeado pa que traiga los servicios del loggeado)
+				"idusuario": idLogg,
+				"calificacion": calificacion,
+				"creationdate": date
+				
+		};
+		apiServicios.crearCompra(map);
+		}
+	}
 	
 
 	function setUserLogged(nickname) {
@@ -476,7 +498,8 @@ app = (function() {
 		perfiles:perfiles,
 		favoritos:favoritos,
 		saveFavorito: saveFavorito,
-		mapFavoritos:mapFavoritos
+		mapFavoritos:mapFavoritos,
+		comprar:comprar
 
 	}
 

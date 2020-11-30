@@ -1,6 +1,6 @@
 apiServicios = (function() {
-    //var url = "http://localhost:8080/servicios"
-     var url = "https://go-offer.herokuapp.com/servicios/"
+    var url = "http://localhost:8080/servicios"
+    // var url = "https://go-offer.herokuapp.com/servicios/"
     function getServiciosByVendedor(id, callback) {//
         $.getJSON("servicios/" + id, function (data) {
             callback(data);
@@ -34,6 +34,30 @@ apiServicios = (function() {
 		const promise = new Promise((resolve, reject) => {
 			$.ajax({
 				url: "servicios/"+name,
+				type: 'POST',
+				data: fun,
+				contentType: "application/json"
+			}).done(function() {
+				Swal.fire({
+					position: 'top-end',
+					icon: 'success',
+					title: 'Registro exitoso',
+					showConfirmButton: false,
+					timer: 1500
+				})
+				resolve('SUCCESS');
+
+			}).fail(function(msg) {
+				reject('FAIL');
+			});
+		});
+
+	}
+	function crearCompra(map) {
+		var fun = JSON.stringify(map);
+		const promise = new Promise((resolve, reject) => {
+			$.ajax({
+				url: "compras/",
 				type: 'POST',
 				data: fun,
 				contentType: "application/json"
@@ -171,7 +195,8 @@ apiServicios = (function() {
 		crearComentario:crearComentario,
 		getComentariosById:getComentariosById,
 		saveFavorito:saveFavorito,
-		getFavoritosById:getFavoritosById
+		getFavoritosById:getFavoritosById,
+		crearCompra:crearCompra
 	}
 
 })();

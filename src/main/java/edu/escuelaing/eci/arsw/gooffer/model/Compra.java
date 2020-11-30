@@ -21,7 +21,7 @@ public class Compra {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-	@Column(name = "idServicio")
+	@Column(name = "idservicio")
     private int idservicio;
 	@Column(name = "idusuario")
     private int idusuario;
@@ -57,16 +57,16 @@ public class Compra {
         return idservicio;
     }
 
-    public void setIdServicio(int idServicio) {
-        this.idservicio = idServicio;
+    public void setIdservicio(int idservicio) {
+        this.idservicio = idservicio;
     }
 
-    public int getIdComprador() {
+    public int getIdusuario() {
         return idusuario;
     }
 
-    public void setIdComprador(int idComprador) {
-        this.idusuario = idComprador;
+    public void setIdusuario(int idusuario) {
+        this.idusuario = idusuario;
     }
 
     public int getCalificacion() {
@@ -77,12 +77,12 @@ public class Compra {
         this.calificacion = calificacion;
     }
 
-    public Date getFecha() {
+    public Date getCreationdate() {
         return creationdate;
     }
 
-    public void setFecha(Date fecha) {
-        this.creationdate = fecha;
+    public void setCreationdate(Date creationdate) {
+        this.creationdate = creationdate;
     }
 
 
