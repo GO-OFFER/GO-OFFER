@@ -55,7 +55,7 @@ chat = (function(){
         console.log(usuario)
         console.log(contenido.sender==usuario)
         if(contenido.type == "CHAT" && contenido.sender==usuario){
-            var mensaje = "<div class='container'> <img src='/images/avatar.png' alt='Avatar' style='width: 100%;'> <p>"+contenido.content+"</p> <span class='time-left'>"+contenido.sender+"</span> </div>";
+            var mensaje = "<div class='container'> <img src='/images/avatar.png' alt='Avatar' style='width: 100%;'> <p><FONT COLOR="cyan">"+contenido.content+"</FONT></p><span class='time-left'>"+contenido.sender+"</span> </div>";
             $("#container-super").append(mensaje);
         }else if(contenido.type == "CONEXION" && contenido.sender!=usuario){
             var mensajeConexion = "<div class='container' style='width: 50%;'> <img style='width: 50%;'> <p>"+contenido.content+"</p> </div>";
@@ -79,7 +79,7 @@ chat = (function(){
         $("#container-super").show();
         $("#envios").show();
         var mensajeInicial1 = "<div class='container'> <img src='/images/avatar.png' alt='Avatar' style='width: 100%;'> <p>Hola "+usuario+", te doy la bienvenida </p> </div>";
-        var mensajeInicial2 = "<div class='container darker'> <img src='/images/avatar.png' alt='Avatar' class='right' style='width: 100%;'> <p>�Disfrutalo!</p> </div>";
+        var mensajeInicial2 = "<div class='container darker'> <img src='/images/avatar.png' alt='Avatar' class='right' style='width: 100%;'> <p>Disfrutalosdfsdf!</p> </div>";
         $("#container-super").append(mensajeInicial1);
         $("#container-super").append(mensajeInicial2);
         conexion();

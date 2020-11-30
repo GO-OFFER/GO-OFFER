@@ -113,7 +113,7 @@ function connectAndSubscribe(){
 
 function enviarMensaje(){
 	mensaje = document.querySelector('#contenido');
-
+	
 	var chatMessage = {
             content: mensaje.value,
             type: 'CHAT',
@@ -133,7 +133,7 @@ function agregar(contenido){
 	console.log(usuario)
 	console.log(contenido.sender==usuario)
 	if(contenido.type == "CHAT" && contenido.sender==usuario){
-		var mensaje = "<div class='container'> <p>"+contenido.content+"</p> <span class='time-left'>"+contenido.sender+"</span> </div>";
+		var mensaje = "<div class='container'> <p> <FONT size=5 COLOR='white'>"+contenido.content+"</FONT></p> 	<span class='time-left'>"+contenido.sender+"</span> </div>";
 		$("#container-super").append(mensaje);
 	}else if(contenido.type == "CONEXION" && contenido.sender!=usuario){
 		var mensajeConexion = "<div class='container' style='width: 50%;'> <p>"+contenido.content+"</p> </div>";
@@ -160,8 +160,8 @@ function ingresar(){
 	$("#container-super").show();
 	$("#envios").show();
     */
-	var mensajeInicial1 = "<div class='container'>  <p>Hola "+usuario+", te doy la bienvenida </p> </div>";
-	var mensajeInicial2 = "<div class='container darker'>  <p>�Disfrutalo!</p> </div>";
+	var mensajeInicial1 = "<div class='container'>  <p><FONT size=5 COLOR='cyan'>Hola "+usuario+", bienvenid@ </FONT></p> </div>";
+	var mensajeInicial2 = "<div class='container darker'>  <p><FONT size=3 color='cyan'>Disfrutalo!  </FONT></p> </div>";
 	$("#container-super").append(mensajeInicial1);
 	$("#container-super").append(mensajeInicial2);
 	//conexion();
@@ -169,11 +169,21 @@ function ingresar(){
 }
 
 
-
+var cont=true;
 
 $(function (){
-	$("#conectar").click(function(){ init2(); });
-	$("#enviar").click(function(){ enviarMensaje(); });
+	
+	//$("#conectar").click(function(){ init2(); });
+	console.info(cont+" cooooooooooot");	
+	if(cont){
+		init2();
+		cont=false;
+	}
+	$("#enviar").click(function(){ 
+			enviarMensaje();
+			 
+		});
+	
 	//  $("#ingresar").click(function(){ ingresar(); });
 
 });
@@ -196,11 +206,9 @@ $(function (){
 			<nav id="sidebar">
 				<div class="menu_section">
 					<ul>
-						<li><a href="loginprueba.html">GO-OFFER PROFILE</a></li>
-						<li><a href="index.html">Home GO-OFFER</a></li>
+						<li><a href="servicios.html">Home GO-OFFER</a></li>
 						<li><a href="about.html">About GO-OFFER</a></li>
-						<li><a href="registro.html">JOIN NOW GO-OFFER</a></li>
-					</ul>
+						</ul>
 				</div>
 			</nav>
 			<div id="content">
@@ -210,7 +218,7 @@ $(function (){
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="logo_main">
-									<a href="index.html"><img src="images/main_logo2.png" /></a>
+									<a href="servicios.html"><img src="images/main_logo2.png" /></a>
 								</div>
 							</div>
 							<div class="col-sm-6">
@@ -227,19 +235,19 @@ $(function (){
 					<h1>Chat</h1>
 				</div>
 				<div id="container-super"></div>
-				<div id="envios" class="input-group mb-3">
-					<input id="contenido" type="text" class="form-control"
+				<div id="envios"  class="input-group mb-3">
+					<input id="contenido" type="text" size=150 
 						placeholder="Escibe un mensaje" aria-label="Recipient's username"
 						aria-describedby="basic-addon2">
 					<div class="input-group-append">
-						<button id="enviar" class="btn btn-outline-secondary"
+						<button id="enviar" class="btn btn-primary"
 							type="button">Enviar</button>
-						<button id="conectar" class="btn btn-outline-secondary"
-							type="button">conectar</button>
+						<!-- <button id="conectar" class="btn btn-outline-secondary"
+							type="button">conectar</button> -->
 					</div>
 				</div>
-			<p>
-				Califica este servicio<select id="calificacion"
+			<p><FONT COLOR="white">
+				Califica este servicio </FONT><select id="calificacion"
 					name="calificacion">
 				
 					<option value="1">1</option>
