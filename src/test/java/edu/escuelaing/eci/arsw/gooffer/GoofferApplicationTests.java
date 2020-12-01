@@ -1,10 +1,7 @@
 package edu.escuelaing.eci.arsw.gooffer;
 
 //import edu.escuelaing.eci.arsw.gooffer.services;
-import edu.escuelaing.eci.arsw.gooffer.model.Comentario;
-import edu.escuelaing.eci.arsw.gooffer.model.Compra;
-import edu.escuelaing.eci.arsw.gooffer.model.Servicio;
-import edu.escuelaing.eci.arsw.gooffer.model.Usuario;
+import edu.escuelaing.eci.arsw.gooffer.model.*;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +12,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import edu.escuelaing.eci.arsw.gooffer.services.*;
 
-import java.util.Date;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -43,23 +43,22 @@ class GoofferApplicationTests {
 	 private PalabraServices us3;
 	 @Autowired
 	 private ServiciosServices us4;
+	 @Autowired
+	 private FavoritosServices us5;
 
 
 	@Test
 	void consultaTablaUsuarios() {
 		assertTrue(us.findAllUsers()!=null);
 	}
-	
 	@Test
 	void consultaTablaCompra() {
 		assertTrue(us1.findAllCompras()!=null);
 	}
-
 	@Test
 	void consultaTablaComentario() {
 		assertTrue(us2.findAllComentarios()!=null);
 	}
-	
 	@Test
 	void consultaTablaPalabra() {
 		assertTrue(us3.findAllPalabras()!=null);
@@ -68,8 +67,12 @@ class GoofferApplicationTests {
 	void consultaTablaServicios() {
 		assertTrue(us4.findAllServices()!=null);
 	}
+	@Test
+	void consultaTablaFavorito(){
+		assertTrue(us5.findAllFavoritos()!=null);
+	}
 
-	/*
+
 	@Test
 	public void deberiaInsertarUsuario() {
 		Usuario Usuario = new Usuario();
@@ -93,11 +96,12 @@ class GoofferApplicationTests {
 
 	}
 	
-	//@Test
-	/*public void DeberiaConsultarPorId() {
+	@Test
+	public void DeberiaConsultarPorId() {
 		Usuario Usuario = new Usuario();
 		Random num = new Random();
 		int generator = num.nextInt(1000);
+		String id = null;
 		Usuario.setId(1003);
 		Usuario.setEmail("estudianteprueba"+ generator +"@mail.escuela.co");
 		Usuario.setNumCompras(6);
@@ -105,17 +109,15 @@ class GoofferApplicationTests {
 		Usuario.setTipo(1);
 		Usuario.setPassword("12345");
 		us.saveUsuario(Usuario);
-		Optional<edu.escuelaing.eci.arsw.gooffer.model.Usuario> nuevo = us.findById(1003);
-		/*List<Usuario> usuarioList = us.findAllUsers();
+		List<Usuario> usuarioList = us.findAllUsers();
 		for(Usuario u :usuarioList){
 			if(u.getEmail().equalsIgnoreCase(Usuario.getEmail())) {
-				nuevo = u;
+				id = u.getEmail();
 			}
 		}
-		assertEquals("test03", (Usuario.getNombre()));
+		assertEquals(id, (Usuario.getEmail()));
 
-	}*/
-	/*
+	}
 	@Test
 	public void DeberiaInsertarServicio() {
 		Servicio Servicio = new Servicio();
@@ -134,6 +136,58 @@ class GoofferApplicationTests {
 		}
 		assertEquals(nuevo.getNombre(), (Servicio.getNombre()));
 
+	}
+	@Test
+	public void deberiaInsertarComentario(){
+		Comentario Comentario = new Comentario();
+		Comentario.setId(10003);
+		Comentario.setComentario("prueba");
+		Comentario.setIdusuario(103);
+		Comentario.setIdservicio(1003);
+		us2.saveComentario(Comentario);
+		List<Comentario> comentarios = us2.findAllComentarios();
+		Comentario co = null;
+		for(Comentario c: comentarios){
+			if(Comentario.getComentario().equalsIgnoreCase(c.getComentario())){
+				System.out.println("entraaa oadreee");
+				co = c;
+			}
+		}
+		assertEquals(co.getComentario(),Comentario.getComentario());
+	}
+	@Test
+	public void deberiaInsertarFavorito(){
+		Favorito Favorito = new Favorito();
+		Favorito.setIdservicio(1003);
+		Favorito.setIdusuario(1003);
+		us5.saveFavorito(Favorito);
+		List<Favorito> favoritos = us5.findAllFavoritos();
+		Favorito fa = null;
+		for(Favorito f: favoritos){
+			if(Favorito.getIdservicio()==f.getIdservicio()){
+				fa = f;
+			}
+		}
+		assertEquals(fa.getIdservicio(),Favorito.getIdservicio());
+	}
+	@Test
+	public void deberiaInsertarCompra() throws ParseException {
+		SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+		Compra Compra = new Compra();
+		Compra.setId(1003);
+		Compra.setIdservicio(1003);
+		Compra.setIdusuario(1003);
+		Compra.setCreationdate(new Date(DATE_FORMAT.parse("2013-09-29").getTime()));
+		Compra.setCalificacion(100);
+		us1.saveCompra(Compra);
+		List<Compra> compras = us1.findAllCompras();
+		Compra co = null;
+		for(Compra c: compras){
+			if(Compra.getCalificacion()==c.getCalificacion()){
+				co = c;
+			}
+		}
+		assertEquals(co.getCalificacion(),Compra.getCalificacion());
 	}
 	/*@Test
 	public void login1() {
