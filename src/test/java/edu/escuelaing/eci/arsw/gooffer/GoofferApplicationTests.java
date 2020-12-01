@@ -24,13 +24,13 @@ import java.util.Random;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-//@ActiveProfiles("test")
-/*@TestPropertySource(properties = {
+@ActiveProfiles("test")
+@TestPropertySource(properties = {
 		"spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.H2Dialect",
 		"spring.datasource.url=jdbc:h2:tcp://localhost/~/test",
 		"spring.datasource.username=sa",
 		"spring.datasource.password="
-})*/
+})
 class GoofferApplicationTests {
 
 	 @Autowired
@@ -95,36 +95,15 @@ class GoofferApplicationTests {
 		assertEquals(nuevo.getEmail(), (Usuario.getEmail()));
 
 	}
-	
 	@Test
-	public void DeberiaConsultarPorId() {
-		Usuario Usuario = new Usuario();
-		Random num = new Random();
-		int generator = num.nextInt(1000);
-		String id = null;
-		Usuario.setId(1003);
-		Usuario.setEmail("estudianteprueba"+ generator +"@mail.escuela.co");
-		Usuario.setNumCompras(6);
-		Usuario.setNombre("test03");
-		Usuario.setTipo(1);
-		Usuario.setPassword("12345");
-		us.saveUsuario(Usuario);
-		List<Usuario> usuarioList = us.findAllUsers();
-		for(Usuario u :usuarioList){
-			if(u.getEmail().equalsIgnoreCase(Usuario.getEmail())) {
-				id = u.getEmail();
-			}
-		}
-		assertEquals(id, (Usuario.getEmail()));
-
-	}
-	@Test
-	public void DeberiaInsertarServicio() {
+	public void DeberiaInsertarServicio() throws ParseException {
+		SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 		Servicio Servicio = new Servicio();
 		Servicio.setId(1003);
 		Servicio.setIdVendedor(111);
 		Servicio.setNombre("service03");
 		Servicio.setDescripcion("12345");
+		Servicio.setCreacion(new Date(DATE_FORMAT.parse("2013-09-29").getTime()));
 		us4.saveServicio(Servicio);
 		Servicio nuevo = null;
 		List<Servicio> servicioList = us4.findAllServices();
@@ -140,10 +119,12 @@ class GoofferApplicationTests {
 	@Test
 	public void deberiaInsertarComentario(){
 		Comentario Comentario = new Comentario();
+		Random num = new Random();
+		int generator = num.nextInt(1000);
 		Comentario.setId(10003);
 		Comentario.setComentario("prueba");
 		Comentario.setIdusuario(103);
-		Comentario.setIdservicio(1003);
+		Comentario.setIdservicio(generator);
 		us2.saveComentario(Comentario);
 		List<Comentario> comentarios = us2.findAllComentarios();
 		Comentario co = null;
@@ -189,6 +170,38 @@ class GoofferApplicationTests {
 		}
 		assertEquals(co.getCalificacion(),Compra.getCalificacion());
 	}
+	@Test
+	public void deberiaInsertarPalabra(){
+		Palabra Palabra = new Palabra();
+		Palabra.setId(1003);
+		Palabra.setIdservicio(1003);
+		Palabra.setPalabra("prueba palabra");
+		us3.savePalabra(Palabra);
+		List<Palabra> palabras =  us3.findAllPalabras();
+		Palabra pa = null;
+		for(Palabra p: palabras){
+			if(Palabra.getPalabraa().equalsIgnoreCase(p.getPalabraa())){
+				pa = p;
+			}
+		}
+		assertEquals(pa.getPalabraa(),Palabra.getPalabraa());
+
+	}
+	@Test
+	public void DeberiaConsultarPorId() {
+		String id = "estudianteprueba304@mail.escuela.cmmmmmo";
+		String id2 = null;
+		List<Usuario> usuarioList = us.findAllUsers();
+		for(Usuario u :usuarioList){
+			System.out.println(u.getEmail());
+			if(u.getEmail().equalsIgnoreCase(id)) {
+				id2 = u.getEmail();
+			}
+		}
+		assertEquals(id,id2);
+
+	}
+
 	/*@Test
 	public void login1() {
 		Usuario Usuario = new Usuario();

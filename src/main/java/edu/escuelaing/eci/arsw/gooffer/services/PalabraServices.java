@@ -12,8 +12,9 @@ import edu.escuelaing.eci.arsw.gooffer.repository.impl.PalabraRepositoryImpl;
 public class PalabraServices {
 	@Autowired
     private PalabraRepositoryImpl palabraRepository;
-	
+
 	public List<Palabra> findAllPalabras(){
         return palabraRepository.findAllPalabras();
     }
+    public void savePalabra(Palabra palabra){ palabraRepository.savePalabra(palabra);}
 }

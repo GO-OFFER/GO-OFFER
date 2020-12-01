@@ -19,5 +19,5 @@ public class PalabraRepositoryImpl{
 	 public List<Palabra> findAllPalabras() {
 	       return palabraRepository.findAll();
 	  }
-    
+   	 public void savePalabra(Palabra palabra){palabraRepository.save(palabra);}
 }
