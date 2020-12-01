@@ -31,6 +31,40 @@ public class CompraController {
         }
         return new ResponseEntity<>(compras, HttpStatus.ACCEPTED);
     }
+	@RequestMapping(value="/{id}",method = RequestMethod.GET)
+	public  ResponseEntity<?>  findCalifByIdServicio(@PathVariable int id) {
+		List<Compra> compras = null;
+        try {
+            compras = compraServices.findCalifByIdS(id);
+        } catch (Exception ex) {
+        	Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error 404",HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(compras, HttpStatus.ACCEPTED);
+    }
+	@RequestMapping(value = "/postIdServicioCache/{map}", method = RequestMethod.POST)	
+    public ResponseEntity<?> postIdServicioCache(@PathVariable int map){
+        try {
+        	System.out.println(" LLEGUE BIEN GRACIAS POR PREGUNTAR IDCACHEEEEE ");
+        	compraServices.postIdServicioCache(map);
+        	
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);
+        }
+    }
+	@RequestMapping(value="/getIdServicioCache",method = RequestMethod.GET)
+	public  ResponseEntity<?>  getIdServicioCache() {
+		int idd = 0;
+        try {
+            idd = compraServices.getIdServicioCache();
+        } catch (Exception ex) {
+        	Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error 404",HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(idd, HttpStatus.ACCEPTED);
+    }
 	@RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> addUser(@RequestBody Compra compra){
         try {

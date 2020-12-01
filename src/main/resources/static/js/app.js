@@ -71,8 +71,13 @@ app = (function() {
 			;
 		}
 	}
+	function guardarService(id){
+		console.info(id);
+		idServicio=id;
+	}
 	function comprar() {
 		//console.info($("#usuario").val());
+		apiServicios.getIdServicioCache(guardarService);
 		if(idLogg==0){
 			apiUsuario.getUsuarioByNombre(localStorage.getItem("selectedUser"), mapUsuario);
 		}else{
@@ -250,11 +255,34 @@ app = (function() {
 		$('#row').empty();
 		
 		//impimir sericio
+		apiServicios.getCalificacionesById(id,guardarCalif);
 		apiServicios.getServicioById(id,"no me borres",imprimirServicio);
+		
 	}
+	
+	function guardarCalif(cal){
+		console.info(cal);
+		if(cal.length==0){
+			calificaciones="Este Servicio aun no posee calificaciones"
+		}else{
+			var res=0;
+			var prom=0;
+			for (var i=0;i<cal.length;++i){
+				console.info(cal[i]);
+				res+=cal[i].calificacion;
+				prom++;
+			}
+			console.info(res/prom);
+			calificaciones=res/prom;
+			
+		}
+		
+	}
+	var calificaciones=null;
 	
 	function imprimirServicio(servicio){
 		idServicio=servicio.id;
+		apiServicios.postIdServicioCache(idServicio);
 		//console.info(servicio.id);
 		setRoomName(idServicio);
 		console.info(localStorage.getItem("selectedRoom"));
@@ -266,6 +294,10 @@ app = (function() {
 					"Descripcion:"+
 				"</h2>"+
 				"<div>"+servicio.descripcion+"</div>"+
+				"<h2>"+
+					"Calificaciones:"+
+				"</h2>"+
+				"<div>"+calificaciones+"</div>"+
 				"<p>"+
 					"<a class='btn btn-primary btn-large' href='/chat.html'>Ofertar Servicio</a>"+
 					"<a class='btn btn-primary btn-large' onclick='app.saveFavorito()'>Añadir a mis favoritos</a>"+
@@ -276,7 +308,7 @@ app = (function() {
 					"Comentarios"+
 				"</h5>"+
 				"<div class=card-body id='buscar'>"+
-					"<button type='button' class='btn btn-primary' onclick='app.mapComentarios()'>mostrar comentarios</button>"+
+					"<button type='button' class='btn btn-primary' onclick='app.mapComentarios()'>Comentarios</button>"+
 				"</div>"+
 				"<div class=card-footer>"+
 					"<textarea id='nuevoComentario' rows='4' cols='50' name='escribe tu comentario' form='usrform' placeholder='escribe tu comentario'></textarea>"+

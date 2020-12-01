@@ -44,7 +44,7 @@ class GoofferApplicationTests {
 	 @Autowired
 	 private ServiciosServices us4;
 
-/*
+
 	@Test
 	void consultaTablaUsuarios() {
 		assertTrue(us.findAllUsers()!=null);
@@ -69,13 +69,14 @@ class GoofferApplicationTests {
 		assertTrue(us4.findAllServices()!=null);
 	}
 
+	/*
 	@Test
 	public void deberiaInsertarUsuario() {
 		Usuario Usuario = new Usuario();
 		Random num = new Random();
 		int generator = num.nextInt(1000);
 		Usuario.setId(1003);
-		Usuario.setEmail("estudianteprueba"+ generator +"@mail.escuela.co");
+		Usuario.setEmail("estudianteprueba"+ generator +"@mail.escuela.cmmmmmo");
 		Usuario.setNumCompras(6);
 		Usuario.setNombre("test03");
 		Usuario.setTipo(1);
@@ -91,6 +92,7 @@ class GoofferApplicationTests {
 		assertEquals(nuevo.getEmail(), (Usuario.getEmail()));
 
 	}
+	
 	//@Test
 	/*public void DeberiaConsultarPorId() {
 		Usuario Usuario = new Usuario();

@@ -20,7 +20,7 @@ public class GoofferCacheImpl implements GoofferCache {
 	
 	private HashMap<String,List<Favorito>> favoritos = new HashMap<String, List<Favorito>>();
 	
-	
+	List<Integer> idServicioCache=null;
 
 
 	@Override
@@ -96,6 +96,19 @@ public class GoofferCacheImpl implements GoofferCache {
 		listanew.add(fav);
 		favoritos.remove(String.valueOf(fav.getIdusuario()));
 		favoritos.put(String.valueOf(fav.getIdusuario()), listanew);
+	}
+
+	@Override
+	public void postIdServicioCache(int id) {
+		this.idServicioCache=new ArrayList<Integer>();
+		this.idServicioCache.add(id);
+		
+		System.out.println(id+"   EL ID QUE LLEGO");
+	}
+
+	@Override
+	public int getIdServicioCache() {
+		return idServicioCache.get(0);
 	}
 
 

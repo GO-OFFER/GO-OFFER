@@ -1,6 +1,6 @@
 apiServicios = (function() {
-     var url = "http://localhost:8080/servicios"
-    //var url = "https://go-offer.herokuapp.com/servicios/"
+    // var url = "http://localhost:8080/servicios"
+    var url = "https://go-offer.herokuapp.com/servicios/"
     function getServiciosByVendedor(id, callback) {//
         $.getJSON("servicios/" + id, function (data) {
             callback(data);
@@ -17,6 +17,16 @@ apiServicios = (function() {
 			callback(data);
         });
 	}
+	function getCalificacionesById(id,callback){
+		 $.getJSON("compras/" + id , function (data) {
+			callback(data);
+        });
+	}
+	function getIdServicioCache(callback){
+		 $.getJSON("compras/getIdServicioCache" , function (data) {
+			callback(data);
+        });
+	}
 	
 	function getServicios(callback) {//
 	    console.log(url);
@@ -29,6 +39,25 @@ apiServicios = (function() {
         });*/
 	}
     
+	function postIdServicioCache(map) {
+		var fun = JSON.stringify(map);
+		const promise = new Promise((resolve, reject) => {
+			$.ajax({
+				url: "compras/postIdServicioCache/"+map,
+				type: 'POST',
+				data: map,
+				contentType: "application/json"
+			}).done(function() {
+				
+				resolve('SUCCESS');
+
+			}).fail(function(msg) {
+			
+				reject('FAIL');
+			});
+		});
+
+	}
 	function crearServicio(map, name) {
 		var fun = JSON.stringify(map);
 		const promise = new Promise((resolve, reject) => {
@@ -65,7 +94,7 @@ apiServicios = (function() {
 				Swal.fire({
 					position: 'top-end',
 					icon: 'success',
-					title: 'Registro exitoso',
+					title: 'Compra exitosa',
 					showConfirmButton: false,
 					timer: 1500
 				})
@@ -196,7 +225,10 @@ apiServicios = (function() {
 		getComentariosById:getComentariosById,
 		saveFavorito:saveFavorito,
 		getFavoritosById:getFavoritosById,
-		crearCompra:crearCompra
+		crearCompra:crearCompra,
+		getCalificacionesById:getCalificacionesById,
+		postIdServicioCache:postIdServicioCache,
+		getIdServicioCache:getIdServicioCache
 	}
 
 })();

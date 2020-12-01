@@ -2,6 +2,7 @@ package edu.escuelaing.eci.arsw.gooffer.cache;
 
 import java.util.List;
 
+import edu.escuelaing.eci.arsw.gooffer.model.Compra;
 import edu.escuelaing.eci.arsw.gooffer.model.Favorito;
 import edu.escuelaing.eci.arsw.gooffer.model.Servicio;
 
@@ -33,5 +34,9 @@ public interface GoofferCache {
 	void putServicioCache(Servicio servi);
 
 	void postFavoritoCache(Favorito fav);
+
+	void postIdServicioCache(int id);
+
+	int getIdServicioCache();
 
 }
