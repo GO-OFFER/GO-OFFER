@@ -16,14 +16,24 @@ CREATE TABLE public.Servicio (
    creationdate date  NOT NULL,
    CONSTRAINT Servicio_pk PRIMARY KEY (id,idUsuario)
 );
+CREATE TABLE public.Compra (
+   id int  NOT NULL,
+   calificacion int  NOT NULL,
+   idUsuario int  NOT NULL,
+   idServicio int  NOT NULL,
+   creationdate date  NOT NULL,
+   CONSTRAINT Compra_pk PRIMARY KEY (id,idUsuario)
+);
+
 
 create table public.palabra(
 	id int not null,
-	idServicio int not null,
+	idservicio int not null,
 	Palabra varchar(50) not null,
-	constraint palabra_pk primary key (id)
+	constraint palabra_pk primary key (id,idServicio)
 );
 
 DROP TABLE IF EXISTS Usuario;
 DROP TABLE IF EXISTS Servicio;
 DROP TABLE IF EXISTS Palabra;
+DROP TABLE IF EXISTS Compra;
