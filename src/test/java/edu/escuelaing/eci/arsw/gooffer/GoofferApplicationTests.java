@@ -24,13 +24,13 @@ import java.util.Random;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ActiveProfiles("test")
+/*@ActiveProfiles("test")
 @TestPropertySource(properties = {
 		"spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.H2Dialect",
 		"spring.datasource.url=jdbc:h2:tcp://localhost/~/test",
 		"spring.datasource.username=sa",
 		"spring.datasource.password="
-})
+})*/
 class GoofferApplicationTests {
 
 	 @Autowired
@@ -189,7 +189,8 @@ class GoofferApplicationTests {
 	}
 	@Test
 	public void DeberiaConsultarPorId() {
-		String id = "estudianteprueba304@mail.escuela.cmmmmmo";
+		//String id = "estudianteprueba304@mail.escuela.cmmmmmo"; //ambiente pruebas
+		String id = "estudianteprueba108@mail.escuela.co"; //ambiente produccion
 		String id2 = null;
 		List<Usuario> usuarioList = us.findAllUsers();
 		for(Usuario u :usuarioList){
