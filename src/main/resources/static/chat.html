@@ -140,7 +140,7 @@ function agregar(contenido){
 		$("#container-super").append(mensajeConexion);
 	}
 	else if(contenido.type == "CHAT" && contenido.sender!=usuario){
-		var mensaje = "<div class='container darker'><p>"+contenido.content+"</p> <span class='time-left'>"+contenido.sender+"</span> </div>";
+		var mensaje = "<div class='container darker'><p><FONT size=5 COLOR='white'>"+contenido.content+"</FONT></p> <span class='time-left'>"+contenido.sender+"</span> </div>";
 		$("#container-super").append(mensaje);
 	}
 
