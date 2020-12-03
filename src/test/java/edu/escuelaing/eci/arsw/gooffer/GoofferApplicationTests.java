@@ -43,7 +43,7 @@ class GoofferApplicationTests {
 	 private PalabraServices us3;
 	 @Autowired
 	 private ServiciosServices us4;
-	 
+
 	 @Autowired
 	 private FavoritosServices us5;
 
