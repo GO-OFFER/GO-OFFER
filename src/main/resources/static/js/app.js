@@ -92,7 +92,7 @@ app = (function() {
 				"idservicio": idServicio, ////LEER///////// parametro 1 es ID del vendedor (por ahora esta quemado como 1, pero hay que buscar pasar el id del loggeado pa que traiga los servicios del loggeado)
 				"idusuario": idLogg,
 				"calificacion": calificacion,
-				"creationdate": date
+				"creationdate":"2020-11-29T05:00:00.000+00:00"
 				
 		};
 		apiServicios.crearCompra(map);

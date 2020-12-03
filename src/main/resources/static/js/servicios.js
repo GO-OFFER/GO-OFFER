@@ -1,5 +1,5 @@
 apiServicios = (function() {
-    // var url = "http://localhost:8080/servicios"
+    //var url = "http://localhost:8080/servicios"
     var url = "https://go-offer.herokuapp.com/servicios/"
     function getServiciosByVendedor(id, callback) {//
         $.getJSON("servicios/" + id, function (data) {
@@ -86,7 +86,7 @@ apiServicios = (function() {
 		var fun = JSON.stringify(map);
 		const promise = new Promise((resolve, reject) => {
 			$.ajax({
-				url: "compras/",
+				url: "compras/save",
 				type: 'POST',
 				data: fun,
 				contentType: "application/json"

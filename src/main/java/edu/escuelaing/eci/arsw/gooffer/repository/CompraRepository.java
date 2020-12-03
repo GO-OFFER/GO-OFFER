@@ -1,9 +1,7 @@
 package edu.escuelaing.eci.arsw.gooffer.repository;
 
 import edu.escuelaing.eci.arsw.gooffer.model.Compra;
-import edu.escuelaing.eci.arsw.gooffer.model.Usuario;
 
-import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
