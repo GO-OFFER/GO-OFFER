@@ -31,16 +31,13 @@ stomp =( function (){
     };
     var addService = function (fun) {
         init();
-      //  var fun = JSON.stringify(map);
-     //   var service = new Service(fun.idVendedor,fun.nombre,fun.descripcion,fun.creationdate)
         console.log("Publishing....");
         console.log(fun);
         console.log(stompClient);
         stompClient.connect({}, function (frame) {
-            //stompClient.send("/app/services."+fun.nombre, {}, JSON.stringify(service));
-           // stompClient.send("/app/services", {}, JSON.stringify(service));
             stompClient.send("/app/services."+fun.nombre, {}, JSON.stringify(fun));
         });
+        app.getServicios();
 
     };
     var disconnect = function() {
