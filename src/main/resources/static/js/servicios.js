@@ -11,7 +11,6 @@ apiServicios = (function() {
 			callback(data);
         });
     }
-
 	function getFavoritosById(id,callback){
 		 $.getJSON("favoritos/" + id , function (data) {
 			callback(data);
